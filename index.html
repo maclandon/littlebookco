@@ -755,86 +755,153 @@ body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(-
 <!-- WAVE -->
 <div class="wave-divider" style="background:var(--teal);">
   <svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-    <path d="M0,50 C360,0 1080,70 1440,30 L1440,70 L0,70 Z" fill="white"/>
+    <path d="M0,50 C360,0 1080,70 1440,30 L1440,70 L0,70 Z" fill="var(--teal-pale)"/>
   </svg>
 </div>
 
-<!-- REVIEWS SECTION -->
-<section style="background:white;padding:4rem 2.5rem;">
-  <div style="max-width:1100px;margin:0 auto;text-align:center;">
+<!-- REVIEWS MARQUEE -->
+<section class="reviews-marquee-section" style="background:var(--teal-pale);padding:4rem 0;overflow:hidden;">
+  <div style="text-align:center;margin-bottom:2.5rem;padding:0 2rem;">
     <h2 style="font-family:'Fredoka One',cursive;font-size:clamp(1.8rem,3vw,2.8rem);margin-bottom:.5rem;">⭐ What real families are saying</h2>
-    <p style="font-size:1rem;color:var(--text-light);margin-bottom:2.5rem;">4.9 out of 5 · 64 verified Etsy reviews</p>
-    <div id="reviewsGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;text-align:left;"></div>
-    <div style="margin-top:2.5rem;">
-      <a href="https://www.etsy.com/shop/LittleLearningBookCo" target="_blank" class="btn-primary lg">See All Reviews on Etsy →</a>
+    <p style="font-size:1rem;color:var(--text-light);">4.9 out of 5 · 64 verified Etsy reviews</p>
+  </div>
+  <style>
+  .marquee-row{display:flex;gap:1.25rem;width:max-content;padding:.5rem 0;}
+  .marquee-row.scroll-left{animation:scrollL 80s linear infinite;}
+  .marquee-row.scroll-right{animation:scrollR 80s linear infinite;}
+  .marquee-row:hover{animation-play-state:paused;}
+  @keyframes scrollL{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+  @keyframes scrollR{0%{transform:translateX(-50%);}100%{transform:translateX(0);}}
+  .rv-card{background:white;border-radius:16px;padding:1.25rem;border:2px solid #f0ebe3;box-shadow:0 4px 0 #e8e0d8;min-width:280px;max-width:340px;flex-shrink:0;}
+  .rv-card strong{font-size:.88rem;display:block;margin-bottom:.25rem;}
+  .rv-card .rv-stars{font-size:.75rem;margin-bottom:.4rem;}
+  .rv-card p{font-style:italic;font-size:.82rem;color:var(--text-light);line-height:1.55;margin:0;}
+  </style>
+  <div style="margin-bottom:1.25rem;">
+    <div class="marquee-row scroll-left">
+      <div class="rv-card"><strong>Sara</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"So cute! Excited to use this with my toddler!"</p></div>
+      <div class="rv-card"><strong>Alyson</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"This arrived so quickly and is the cutest learning book ever!!! My 2.5 year old loves it!!"</p></div>
+      <div class="rv-card"><strong>Christy</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"This is perfect for my son! He loves it! Super cute sports theme and helpful activities for preschool!"</p></div>
+      <div class="rv-card"><strong>Marie</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"This was amazing, thank you!"</p></div>
+      <div class="rv-card"><strong>Etsy buyer</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"So good! Love the book!"</p></div>
+      <div class="rv-card"><strong>Carmencita</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"My granddaughter will use this and help her with school"</p></div>
+      <div class="rv-card"><strong>Liz</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Lovely item for little ones! Owner is amazing!"</p></div>
+      <div class="rv-card"><strong>Liz</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Such a cute, helpful gift for little ones just learning these skills! Owner of the shop is WONDERFUL!!!"</p></div>
+      <div class="rv-card"><strong>Etsy buyer</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"After getting a preschool book for our son, we realized they are the perfect special gift and got three more for the 4 year olds in our life!"</p></div>
+      <div class="rv-card"><strong>Liz</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Seller was amazing and was so helpful with a mistake I made when ordering! Thank you!!!"</p></div>
+      <div class="rv-card"><strong>Vicki</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Good quality and customer service"</p></div>
+      <div class="rv-card"><strong>Natalie</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Came super quick and is exactly as described! Love it!"</p></div>
+      <div class="rv-card"><strong>Heather</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Super cute and good quality"</p></div>
+      <div class="rv-card"><strong>Teresa</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"This is just perfect for my granddaughter"</p></div>
+      <div class="rv-card"><strong>Korey</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Super cute gift for TKers!"</p></div>
+      <div class="rv-card"><strong>Catalina</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Always using it with my toddlers. Great and fun way of learning"</p></div>
+      <div class="rv-card"><strong>Catalina</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Excellent resource for my babies to start their learning adventure"</p></div>
+      <div class="rv-card"><strong>Etsy buyer</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"My 4 year old loves it"</p></div>
+      <div class="rv-card"><strong>Hanna</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"My toddler loves his book!"</p></div>
+      <div class="rv-card"><strong>Amber</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Loved the outcome of the learning book, so nice to have as a gift."</p></div>
+      <div class="rv-card"><strong>Amber</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Gave as a gift and my friends loves it for her kids."</p></div>
+      <div class="rv-card"><strong>Amber</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Great book, the kids loved it."</p></div>
+      <div class="rv-card"><strong>Amber</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Books came out so nice! Gave as a gift and they loved them."</p></div>
+      <div class="rv-card"><strong>Leah</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Product was as it was expected"</p></div>
+      <div class="rv-card"><strong>Brittany</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"This is the perfect gift idea for all your friends kids. It's high quality, great customer service, and speedy!"</p></div>
+      <div class="rv-card"><strong>Etsy buyer</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Great product, my daughter is starting kindergarten and this is a great book to help her with the transition!"</p></div>
+      <div class="rv-card"><strong>Kylee</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"As described — well crafted and our 3yo daughter enjoys it!"</p></div>
+      <!-- duplicated for infinite scroll -->
+      <div class="rv-card"><strong>Sara</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"So cute! Excited to use this with my toddler!"</p></div>
+      <div class="rv-card"><strong>Alyson</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"This arrived so quickly and is the cutest learning book ever!!! My 2.5 year old loves it!!"</p></div>
+      <div class="rv-card"><strong>Christy</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"This is perfect for my son! He loves it! Super cute sports theme and helpful activities for preschool!"</p></div>
+      <div class="rv-card"><strong>Marie</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"This was amazing, thank you!"</p></div>
+      <div class="rv-card"><strong>Etsy buyer</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"So good! Love the book!"</p></div>
+      <div class="rv-card"><strong>Carmencita</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"My granddaughter will use this and help her with school"</p></div>
+      <div class="rv-card"><strong>Liz</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Lovely item for little ones! Owner is amazing!"</p></div>
+      <div class="rv-card"><strong>Liz</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Such a cute, helpful gift for little ones just learning these skills! Owner of the shop is WONDERFUL!!!"</p></div>
+      <div class="rv-card"><strong>Etsy buyer</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"After getting a preschool book for our son, we realized they are the perfect special gift and got three more for the 4 year olds in our life!"</p></div>
+      <div class="rv-card"><strong>Liz</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Seller was amazing and was so helpful with a mistake I made when ordering! Thank you!!!"</p></div>
+      <div class="rv-card"><strong>Vicki</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Good quality and customer service"</p></div>
+      <div class="rv-card"><strong>Natalie</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Came super quick and is exactly as described! Love it!"</p></div>
+      <div class="rv-card"><strong>Heather</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Super cute and good quality"</p></div>
+      <div class="rv-card"><strong>Teresa</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"This is just perfect for my granddaughter"</p></div>
+      <div class="rv-card"><strong>Korey</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Super cute gift for TKers!"</p></div>
+      <div class="rv-card"><strong>Catalina</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Always using it with my toddlers. Great and fun way of learning"</p></div>
+      <div class="rv-card"><strong>Catalina</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Excellent resource for my babies to start their learning adventure"</p></div>
+      <div class="rv-card"><strong>Etsy buyer</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"My 4 year old loves it"</p></div>
+      <div class="rv-card"><strong>Hanna</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"My toddler loves his book!"</p></div>
+      <div class="rv-card"><strong>Amber</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Loved the outcome of the learning book, so nice to have as a gift."</p></div>
+      <div class="rv-card"><strong>Amber</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Gave as a gift and my friends loves it for her kids."</p></div>
+      <div class="rv-card"><strong>Amber</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Great book, the kids loved it."</p></div>
+      <div class="rv-card"><strong>Amber</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Books came out so nice! Gave as a gift and they loved them."</p></div>
+      <div class="rv-card"><strong>Leah</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Product was as it was expected"</p></div>
+      <div class="rv-card"><strong>Brittany</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"This is the perfect gift idea for all your friends kids. It's high quality, great customer service, and speedy!"</p></div>
+      <div class="rv-card"><strong>Etsy buyer</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Great product, my daughter is starting kindergarten and this is a great book to help her with the transition!"</p></div>
+      <div class="rv-card"><strong>Kylee</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"As described — well crafted and our 3yo daughter enjoys it!"</p></div>
     </div>
   </div>
+  <div>
+    <div class="marquee-row scroll-right">
+      <div class="rv-card"><strong>Brooke</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Such a sweet customized learning book for my preschooler! All the pages are very detailed and thought out. Highly recommend!!!"</p></div>
+      <div class="rv-card"><strong>Bailey</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Perfect gift for my daughter!"</p></div>
+      <div class="rv-card"><strong>Fernesha</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"My baby loves it."</p></div>
+      <div class="rv-card"><strong>Skylar</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Love this product! Can't wait to use it"</p></div>
+      <div class="rv-card"><strong>Etsy buyer</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Super cute and love that it's dry erase and even came with a marker. Also love that it has the name on the front!"</p></div>
+      <div class="rv-card"><strong>Etsy buyer</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"I ordered the sports themed books for my nephews. They are absolute perfection! The quality was exceptional."</p></div>
+      <div class="rv-card"><strong>Bailey</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"A great gift for my nieces!"</p></div>
+      <div class="rv-card"><strong>Kristyn</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Love the book! Exactly what I expected."</p></div>
+      <div class="rv-card"><strong>Ellen</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Such a great gift for a little one getting ready for pre-school. The activity book is so well made."</p></div>
+      <div class="rv-card"><strong>FARIHA</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"High quality. Very pleased with the book!"</p></div>
+      <div class="rv-card"><strong>Valerie</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Super happy with this book! My 4 year old loves it!"</p></div>
+      <div class="rv-card"><strong>Eileen</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Sent as a gift — by all reports the 4 year old that got it has spent much time working with it and enjoys it."</p></div>
+      <div class="rv-card"><strong>Etsy buyer</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Such a great activity book! Great quality and super cute! Love the personalization"</p></div>
+      <div class="rv-card"><strong>Candice</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Great quality! My son is going to love it"</p></div>
+      <div class="rv-card"><strong>Sidney</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Such a cute gift! Great quality and fast shipping!"</p></div>
+      <div class="rv-card"><strong>Jessica</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Exactly as pictured. Great quality. My son loves it!"</p></div>
+      <div class="rv-card"><strong>Megan</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Great quality! Exactly as described and quick delivery"</p></div>
+      <div class="rv-card"><strong>Barbara</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"It was exactly what I was looking for."</p></div>
+      <div class="rv-card"><strong>Ruth</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Far nicer than I expected. So very pleased"</p></div>
+      <div class="rv-card"><strong>Etsy buyer</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Adorable I love it so much"</p></div>
+      <div class="rv-card"><strong>Abby</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Perfect Gift for Littles. Everything I expected. Will do future orders!!"</p></div>
+      <div class="rv-card"><strong>Abby</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Everything about it was perfect!! Would definitely recommend and purchase in the future!"</p></div>
+      <div class="rv-card"><strong>Jaime</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"I'm thrilled with this purchase! It's high-quality, it covers essential skills perfectly suited for kindergarten."</p></div>
+      <div class="rv-card"><strong>Mahta</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Great resource for future kindergarteners and is extremely child friendly!"</p></div>
+      <div class="rv-card"><strong>Etsy buyer</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Fun and easy! My son loves using his special book!"</p></div>
+      <div class="rv-card"><strong>Erica</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"This workbook is amazing! My son loves learning and when this arrived he was so excited. I can't recommend this enough!"</p></div>
+      <div class="rv-card"><strong>MALINDA</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Something fun and new to try"</p></div>
+      <!-- duplicated for infinite scroll -->
+      <div class="rv-card"><strong>Brooke</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Such a sweet customized learning book for my preschooler! All the pages are very detailed and thought out. Highly recommend!!!"</p></div>
+      <div class="rv-card"><strong>Bailey</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Perfect gift for my daughter!"</p></div>
+      <div class="rv-card"><strong>Fernesha</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"My baby loves it."</p></div>
+      <div class="rv-card"><strong>Skylar</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Love this product! Can't wait to use it"</p></div>
+      <div class="rv-card"><strong>Etsy buyer</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Super cute and love that it's dry erase and even came with a marker. Also love that it has the name on the front!"</p></div>
+      <div class="rv-card"><strong>Etsy buyer</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"I ordered the sports themed books for my nephews. They are absolute perfection! The quality was exceptional."</p></div>
+      <div class="rv-card"><strong>Bailey</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"A great gift for my nieces!"</p></div>
+      <div class="rv-card"><strong>Kristyn</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Love the book! Exactly what I expected."</p></div>
+      <div class="rv-card"><strong>Ellen</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Such a great gift for a little one getting ready for pre-school. The activity book is so well made."</p></div>
+      <div class="rv-card"><strong>FARIHA</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"High quality. Very pleased with the book!"</p></div>
+      <div class="rv-card"><strong>Valerie</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Super happy with this book! My 4 year old loves it!"</p></div>
+      <div class="rv-card"><strong>Eileen</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Sent as a gift — by all reports the 4 year old that got it has spent much time working with it and enjoys it."</p></div>
+      <div class="rv-card"><strong>Etsy buyer</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Such a great activity book! Great quality and super cute! Love the personalization"</p></div>
+      <div class="rv-card"><strong>Candice</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Great quality! My son is going to love it"</p></div>
+      <div class="rv-card"><strong>Sidney</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Such a cute gift! Great quality and fast shipping!"</p></div>
+      <div class="rv-card"><strong>Jessica</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Exactly as pictured. Great quality. My son loves it!"</p></div>
+      <div class="rv-card"><strong>Megan</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Great quality! Exactly as described and quick delivery"</p></div>
+      <div class="rv-card"><strong>Barbara</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"It was exactly what I was looking for."</p></div>
+      <div class="rv-card"><strong>Ruth</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Far nicer than I expected. So very pleased"</p></div>
+      <div class="rv-card"><strong>Etsy buyer</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Adorable I love it so much"</p></div>
+      <div class="rv-card"><strong>Abby</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Perfect Gift for Littles. Everything I expected. Will do future orders!!"</p></div>
+      <div class="rv-card"><strong>Abby</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Everything about it was perfect!! Would definitely recommend and purchase in the future!"</p></div>
+      <div class="rv-card"><strong>Jaime</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"I'm thrilled with this purchase! It's high-quality, it covers essential skills perfectly suited for kindergarten."</p></div>
+      <div class="rv-card"><strong>Mahta</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Great resource for future kindergarteners and is extremely child friendly!"</p></div>
+      <div class="rv-card"><strong>Etsy buyer</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Fun and easy! My son loves using his special book!"</p></div>
+      <div class="rv-card"><strong>Erica</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"This workbook is amazing! My son loves learning and when this arrived he was so excited. I can't recommend this enough!"</p></div>
+      <div class="rv-card"><strong>MALINDA</strong><div class="rv-stars">⭐⭐⭐⭐⭐</div><p>"Something fun and new to try"</p></div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:2.5rem;padding:0 2rem;">
+    <a href="https://www.etsy.com/shop/LittleLearningBookCo" target="_blank" class="btn-primary lg">See All Reviews on Etsy →</a>
+  </div>
 </section>
-<script>
-(function(){
-const reviews=[
-{name:"Sara",text:"So cute! Excited to use this with my toddler!",date:"Apr 2026"},
-{name:"Alyson",text:"This arrived so quickly and is the cutest learning book ever!!! My 2.5 year old loves it!!",date:"Feb 2026"},
-{name:"Christy",text:"This is perfect for my son! He loves it! Super cute sports theme and helpful activities for preschool!",date:"Feb 2026"},
-{name:"Marie",text:"This was amazing, thank you!",date:"Jan 2026"},
-{name:"Etsy buyer",text:"So good! Love the book!",date:"Dec 2025"},
-{name:"Carmencita",text:"My granddaughter will use this and help her with school",date:"Dec 2025"},
-{name:"Liz",text:"Lovely item for little ones! Owner is amazing!",date:"Dec 2025"},
-{name:"Liz",text:"Such a cute, helpful gift for little ones just learning these skills! Owner of the shop is WONDERFUL!!! Love supporting small shops and this one is an example as to why!",date:"Dec 2025"},
-{name:"Etsy buyer",text:"After getting a preschool book for our son, we realized they are the perfect special gift and got three more for the 4 year olds in our life! The books are beautiful and make kids feel so special as they learn essential skills. We love them!",date:"Dec 2025"},
-{name:"Liz",text:"Seller was amazing and was so helpful with a mistake I made when ordering! Thank you!!!",date:"Nov 2025"},
-{name:"Vicki",text:"Good quality and customer service",date:"Nov 2025"},
-{name:"Natalie",text:"Came super quick and is exactly as described! Love it!",date:"Nov 2025"},
-{name:"Heather",text:"Super cute and good quality",date:"Oct 2025"},
-{name:"Teresa",text:"This is just perfect for my granddaughter",date:"Oct 2025"},
-{name:"Korey",text:"Super cute gift for TKers!",date:"Oct 2025"},
-{name:"Catalina",text:"Always using it with my toddlers. Great and fun way of learning",date:"Sep 2025"},
-{name:"Catalina",text:"Excellent resource for my babies to start their learning adventure",date:"Aug 2025"},
-{name:"Etsy buyer",text:"My 4 year old loves it",date:"Aug 2025"},
-{name:"Hanna",text:"My toddler loves his book!",date:"Aug 2025"},
-{name:"Amber",text:"Loved the outcome of the learning book, so nice to have as a gift.",date:"Jun 2025"},
-{name:"Amber",text:"Gave as a gift and my friends loves it for her kids.",date:"Jun 2025"},
-{name:"Amber",text:"Great book, the kids loved it.",date:"Jun 2025"},
-{name:"Amber",text:"Books came out so nice! Gave as a gift and they loved them.",date:"Jun 2025"},
-{name:"Leah",text:"Product was as it was expected",date:"Jun 2025"},
-{name:"Brittany",text:"This is the perfect gift idea for all your friends kids. It\u2019s high quality, great customer service, and speedy! Cannot recommend enough.",date:"May 2025"},
-{name:"Etsy buyer",text:"Great product, my daughter is starting kindergarten and this is a great book to help her with the transition!",date:"May 2025"},
-{name:"Kylee",text:"As described \u2014 well crafted and our 3yo daughter enjoys it!",date:"Apr 2025"},
-{name:"Brooke",text:"Such a sweet customized learning book for my preschooler! All the pages are very detailed and thought out, laminated and beautifully done. Our book got lost in the mail but they sent another \u2014 such great customer service! Would make an adorable gift. Highly recommend!!!",date:"Apr 2025"},
-{name:"Bailey",text:"Perfect gift for my daughter!",date:"Apr 2025"},
-{name:"Fernesha",text:"My baby loves it.",date:"Mar 2025"},
-{name:"Skylar",text:"Love this product! Can\u2019t wait to use it",date:"Mar 2025"},
-{name:"Etsy buyer",text:"Super cute and love that it\u2019s dry erase and even came with a marker. Also love that it has the name on the front and on the inside to trace!",date:"Mar 2025"},
-{name:"Etsy buyer",text:"I ordered the sports themed books for my Preschool and Kindergarten age nephews. They are absolute perfection! The quality was exceptional, the personalization is adorable and the delivery was faster than fast. Will definitely order again!",date:"Mar 2025"},
-{name:"Bailey",text:"A great gift for my nieces!",date:"Mar 2025"},
-{name:"Kristyn",text:"Love the book! Exactly what I expected.",date:"Mar 2025"},
-{name:"Ellen",text:"Such a great gift for a little one getting ready for pre-school. The activity book is so well made.",date:"Feb 2025"},
-{name:"FARIHA",text:"High quality. Very pleased with the book!",date:"Feb 2025"},
-{name:"Valerie",text:"Super happy with this book! My 4 year old loves it!",date:"Feb 2025"},
-{name:"Eileen",text:"Sent as a gift \u2014 by all reports the 4 year old that got it has spent much time working with it and enjoys it.",date:"Feb 2025"},
-{name:"Etsy buyer",text:"Such a great activity book! Great quality and super cute! Love the personalization",date:"Jan 2025"},
-{name:"Candice",text:"Great quality! My son is going to love it",date:"Jan 2025"},
-{name:"Sidney",text:"Such a cute gift! Great quality and fast shipping!",date:"Jan 2025"},
-{name:"Jessica",text:"Exactly as pictured. Great quality. My son loves it!",date:"Jan 2025"},
-{name:"Megan",text:"Great quality! Exactly as described and quick delivery",date:"Dec 2024"},
-{name:"Barbara",text:"It was exactly what I was looking for.",date:"Dec 2024"},
-{name:"Etsy buyer",text:"Great purchase for my money",date:"Dec 2024"},
-{name:"Ruth",text:"Far nicer than I expected. So very pleased",date:"Dec 2024"},
-{name:"Etsy buyer",text:"Adorable I love it so much",date:"Nov 2024"},
-{name:"Abby",text:"Perfect Gift for Littles. Everything I expected. Will do future orders!!",date:"Oct 2024"},
-{name:"Abby",text:"Everything about it was perfect!! Would definitely recommend and purchase in the future!",date:"Oct 2024"},
-{name:"MALINDA",text:"Something fun and new to try",date:"Aug 2024"},
-{name:"Jaime",text:"I\u2019m thrilled with this purchase! It\u2019s high-quality, it covers essential skills perfectly suited for kindergarten. Highly recommend it to other parents. Five stars!",date:"May 2024"},
-{name:"Mahta",text:"Great resource for future kindergarteners and is extremely child friendly!",date:"May 2024"},
-{name:"Etsy buyer",text:"Fun and easy! My son loves using his special book!",date:"May 2024"},
-{name:"Erica",text:"This workbook is amazing! My son loves learning and when this arrived he was so excited. The tracing is perfect for my little learner to learn how to write letters and numbers. I can\u2019t recommend this little learning book enough!",date:"May 2024"},
-];
-document.getElementById('reviewsGrid').innerHTML=reviews.map(r=>`<div style="background:white;border-radius:20px;border:2px solid #f0ebe3;box-shadow:0 4px 0 #e8e0d8;padding:1.5rem;"><strong style="font-size:.9rem;">${r.name}</strong><div style="margin:.4rem 0;">⭐⭐⭐⭐⭐</div><p style="font-style:italic;font-size:.88rem;color:var(--text-light);line-height:1.6;margin-bottom:.75rem;">"${r.text}"</p><span style="font-size:.75rem;color:#aaa;">${r.date}</span></div>`).join('');
-})();
-</script>
 
 <!-- WAVE -->
-<div class="wave-divider" style="background:white;">
+<div class="wave-divider" style="background:var(--teal-pale);">
   <svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
     <path d="M0,30 C480,70 960,0 1440,50 L1440,70 L0,70 Z" fill="#1a1a2e"/>
   </svg>
