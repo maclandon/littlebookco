@@ -4,19 +4,73 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About Elle — Little Book Co.</title>
-<meta name="description" content="Meet Elle, the mom and educator behind Little Book Co. Her story, her mission, and why she started making personalized learning books.">
+<meta name="description" content="Meet Elle, the mom and educator behind Little Book Co.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Playfair+Display:ital,wght@0,700;1,600;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<style>
+.about-split { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; max-width: 1100px; margin: 0 auto; padding: 5rem 2.5rem; }
+.about-photo-wrap { position: relative; }
+.about-photo {
+  width: 100%; aspect-ratio: 4/5; border-radius: 28px;
+  background: var(--teal-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10rem; overflow: hidden;
+  box-shadow: 8px 8px 0 var(--teal);
+  border: 4px solid var(--teal);
+}
+.about-badge {
+  position: absolute; bottom: -20px; right: -20px;
+  background: white; border-radius: 20px; padding: 1rem 1.25rem;
+  box-shadow: 0 4px 0 var(--teal-light); border: 3px solid var(--teal-light);
+  font-size: .85rem; font-weight: 800;
+}
+.about-text h1 { font-family: 'Fredoka One', cursive; font-size: clamp(2rem,3.5vw,3rem); line-height: 1.1; margin-bottom: 1.25rem; }
+.about-text h1 em { font-style: normal; color: var(--teal-dark); }
+.about-text p { color: var(--text-light); line-height: 1.8; margin-bottom: 1rem; font-size: .98rem; }
+
+.values-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
+.value-card {
+  text-align: center; padding: 2.5rem 1.75rem; border-radius: 24px;
+  border: 3px solid transparent; transition: all .3s;
+}
+.value-card:nth-child(1) { background: var(--teal-pale); border-color: var(--teal-light); }
+.value-card:nth-child(2) { background: #fef9e8; border-color: #fce97a; }
+.value-card:nth-child(3) { background: var(--rose-light); border-color: #f9b8c3; }
+.value-card:hover { transform: translateY(-5px); }
+.value-icon { font-size: 2.5rem; display: block; margin-bottom: 1rem; }
+.value-card h3 { font-family: 'Fredoka One', cursive; font-size: 1.2rem; margin-bottom: .5rem; }
+.value-card p { font-size: .88rem; color: var(--text-light); line-height: 1.6; }
+
+.timeline { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 2rem; }
+.timeline-item { display: flex; gap: 1.5rem; align-items: flex-start; }
+.timeline-year {
+  width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Fredoka One', cursive; font-size: .9rem; color: white;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.15);
+}
+.timeline-item:nth-child(1) .timeline-year { background: var(--teal); }
+.timeline-item:nth-child(2) .timeline-year { background: var(--gold-dark); }
+.timeline-item:nth-child(3) .timeline-year { background: var(--rose); }
+.timeline-item:nth-child(4) .timeline-year { background: var(--teal-dark); }
+.timeline-content strong { display: block; font-size: 1rem; font-weight: 800; margin-bottom: .3rem; }
+.timeline-content p { color: var(--text-light); font-size: .9rem; line-height: 1.65; }
+
+@media (max-width: 960px) {
+  .about-split { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 3rem; }
+  .values-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
 
 <nav class="nav" id="nav">
-  <a href="index.html" class="nav-logo"><div class="nav-logo-icon">📖</div><span>Little Book Co.</span></a>
+  <a href="index.html" class="nav-logo"><img src="Logo-2.png" alt="Little Book Co." class="nav-logo-img" style="height:36px;width:auto;"><span class="nav-logo-text">Little Book Co.</span></a>
   <ul class="nav-links">
     <li><a href="shop.html">Shop</a></li>
-    <li><a href="about.html" style="color:var(--teal)">About</a></li>
+    <li><a href="about.html" class="active">About</a></li>
     <li><a href="blog.html">Blog</a></li>
     <li><a href="freebie.html">Free Download</a></li>
   </ul>
@@ -24,121 +78,131 @@
   <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="shop.html">Shop</a>
-  <a href="about.html">About</a>
-  <a href="blog.html">Blog</a>
-  <a href="freebie.html">Free Download</a>
+  <a href="shop.html">Shop</a><a href="about.html">About</a><a href="blog.html">Blog</a><a href="freebie.html">Free Download</a>
   <a href="shop.html" class="mobile-cta">Shop Now ✨</a>
 </div>
 
-<!-- HERO -->
-<section class="about-hero">
-  <div class="about-hero-inner">
-    <div class="about-photo-wrap">
-      <div class="about-photo-placeholder">👩‍👧</div>
-      <div style="position:absolute;bottom:-16px;right:-16px;background:white;border-radius:16px;padding:1rem 1.25rem;box-shadow:0 4px 24px rgba(107,173,160,0.15);font-size:.85rem;font-weight:700;">
-        <div style="color:var(--teal-dark)">⭐ Etsy Star Seller</div>
-        <div style="color:var(--text-light);font-weight:600;font-size:.78rem;margin-top:.2rem">967+ Five-Star Reviews</div>
+<div class="announce-bar">🎉 Free shipping on orders $35+ — <a href="shop.html">Shop the collection →</a></div>
+
+<!-- ABOUT SPLIT -->
+<div style="background:var(--teal-pale);padding-top:73px;">
+  <div class="about-split">
+    <div class="about-photo-wrap reveal">
+      <div class="about-photo">👩‍👧</div>
+      <div class="about-badge">
+        <div style="color:var(--teal-dark);">⭐ Etsy Star Seller</div>
+        <div style="color:var(--text-light);font-weight:600;font-size:.78rem;margin-top:.2rem;">967+ Five-Star Reviews</div>
       </div>
     </div>
-    <div class="about-text">
-      <div class="section-tag">Meet Elle</div>
-      <h1>A mom who made one book, and<br><em>couldn't stop.</em></h1>
+    <div class="about-text reveal">
+      <div class="section-eyebrow eyebrow-teal">Meet Elle</div>
+      <h1>A mom who made one book, and <em>couldn't stop.</em></h1>
       <p>Hi! I'm Elle — mom, homeschool educator, and total craft nerd. I started Little Book Co. because I couldn't find a workbook that felt personal enough for my daughter.</p>
       <p>She'd flip past worksheets in seconds. But when I made one with her name on every page, her favorite characters, and activities I knew she'd love — she asked to do it every morning.</p>
       <p>That was three years ago. Now I make them for families all over the country, and that moment of a child opening their very own personalized book never gets old.</p>
-      <a href="shop.html" class="btn-primary" style="margin-top:1.5rem;display:inline-block">Shop the Collection →</a>
+      <a href="shop.html" class="btn-primary lg" style="margin-top:1.5rem;">Shop the Collection →</a>
     </div>
   </div>
-</section>
+</div>
+
+<div class="wave" style="background:var(--teal-pale);"><svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,30 C360,70 1080,0 1440,40 L1440,70 L0,70 Z" fill="white"/></svg></div>
 
 <!-- VALUES -->
 <section class="section" style="background:white;">
   <div class="inner">
-    <div class="section-header">
-      <div class="section-tag">What I Believe</div>
-      <h2>Every child deserves to feel <em>like the main character.</em></h2>
+    <div style="text-align:center;margin-bottom:3rem;">
+      <div class="section-eyebrow eyebrow-teal">What I Believe</div>
+      <h2 class="section-h2" style="margin-top:.5rem;">Every child deserves to feel <em style="color:var(--teal-dark);">like the main character.</em></h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;" id="values">
-      <div class="step-card reveal">
-        <div class="step-icon">💛</div>
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <span class="value-icon">💛</span>
         <h3>Learning is personal</h3>
         <p>When a child sees their own name in a book, something clicks. It becomes theirs. That spark is everything.</p>
       </div>
-      <div class="step-card reveal">
-        <div class="step-icon">🌱</div>
+      <div class="value-card reveal">
+        <span class="value-icon">🌱</span>
         <h3>Play is the best teacher</h3>
         <p>Every activity is designed to feel like play, not homework. Kids learn faster when they're having fun.</p>
       </div>
-      <div class="step-card reveal">
-        <div class="step-icon">💚</div>
+      <div class="value-card reveal">
+        <span class="value-icon">💚</span>
         <h3>Quality over quantity</h3>
-        <p>I'd rather make one book a family uses for 3 years than sell 10 they toss after a month. Dry-erase for life.</p>
+        <p>I'd rather make one book a family uses for 3 years than sell 10 they toss after a month.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- STORY TIMELINE -->
+<div class="wave" style="background:white;"><svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,20 C480,70 960,0 1440,50 L1440,70 L0,70 Z" fill="var(--cream)"/></svg></div>
+
+<!-- TIMELINE -->
 <section class="section" style="background:var(--cream);">
   <div class="inner">
-    <div class="section-header">
-      <div class="section-tag">The Story</div>
-      <h2>From one book to <em>thousands of families.</em></h2>
+    <div style="text-align:center;margin-bottom:3rem;">
+      <div class="section-eyebrow eyebrow-gold">The Story</div>
+      <h2 class="section-h2" style="margin-top:.5rem;">From one book to <em style="color:var(--gold-dark);">thousands of families.</em></h2>
     </div>
-    <div style="max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:2rem;">
-      <div style="display:flex;gap:1.5rem;align-items:flex-start;" class="reveal">
-        <div style="background:var(--teal);color:white;border-radius:50%;width:40px;height:40px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;">2021</div>
-        <div>
-          <strong style="display:block;margin-bottom:.3rem;">The first book</strong>
-          <p style="color:var(--text-light);font-size:.9rem;line-height:1.65;">Made my daughter her first personalized workbook at the kitchen table. She cried (happy tears) when she saw her name. I cried too.</p>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2021</div>
+        <div class="timeline-content">
+          <strong>The first book</strong>
+          <p>Made my daughter her first personalized workbook at the kitchen table. She cried happy tears when she saw her name. I cried too.</p>
         </div>
       </div>
-      <div style="display:flex;gap:1.5rem;align-items:flex-start;" class="reveal">
-        <div style="background:var(--gold);color:white;border-radius:50%;width:40px;height:40px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;">2022</div>
-        <div>
-          <strong style="display:block;margin-bottom:.3rem;">Etsy launch</strong>
-          <p style="color:var(--text-light);font-size:.9rem;line-height:1.65;">Friends started asking. Then their friends. Opened the Etsy shop and hit 100 sales by month three.</p>
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2022</div>
+        <div class="timeline-content">
+          <strong>Etsy launch</strong>
+          <p>Friends started asking. Then their friends. Opened the Etsy shop and hit 100 sales by month three.</p>
         </div>
       </div>
-      <div style="display:flex;gap:1.5rem;align-items:flex-start;" class="reveal">
-        <div style="background:var(--rose);color:white;border-radius:50%;width:40px;height:40px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;">2023</div>
-        <div>
-          <strong style="display:block;margin-bottom:.3rem;">TikTok goes viral</strong>
-          <p style="color:var(--text-light);font-size:.9rem;line-height:1.65;">A 60-second video of my daughter opening her book hit 798K views. Inbox flooded. Etsy overwhelmed. Best problem I've ever had.</p>
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2023</div>
+        <div class="timeline-content">
+          <strong>TikTok goes viral</strong>
+          <p>A 60-second video of my daughter opening her book hit 798K views. Inbox flooded. Best problem I've ever had.</p>
         </div>
       </div>
-      <div style="display:flex;gap:1.5rem;align-items:flex-start;" class="reveal">
-        <div style="background:var(--teal-dark);color:white;border-radius:50%;width:40px;height:40px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;">2026</div>
-        <div>
-          <strong style="display:block;margin-bottom:.3rem;">This website!</strong>
-          <p style="color:var(--text-light);font-size:.9rem;line-height:1.65;">Launched littlebookco.org so I can serve families directly, build a real community, and keep making books kids love.</p>
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2026</div>
+        <div class="timeline-content">
+          <strong>This website!</strong>
+          <p>Launched littlebookco.org so I can serve families directly, build a real community, and keep making books kids love.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="section email-capture">
-  <div class="inner">
-    <div class="email-card">
-      <div class="email-card-deco">📖</div>
-      <h2>Let's make a book for your little one.</h2>
-      <p>Browse the full collection and customize a book that's 100% theirs.</p>
-      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:.5rem;">
-        <a href="shop.html" class="btn-primary lg">Shop the Collection →</a>
-        <a href="freebie.html" class="btn-ghost">Grab a Free Template</a>
-      </div>
+<div class="wave" style="background:var(--cream);"><svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,40 C360,0 1080,70 1440,20 L1440,70 L0,70 Z" fill="var(--teal)"/></svg></div>
+
+<!-- CTA COLOR BLOCK -->
+<section class="color-block teal-bg">
+  <div style="max-width:600px;margin:0 auto;text-align:center;">
+    <div class="section-eyebrow eyebrow-dark">Ready?</div>
+    <h2 style="color:white;margin-top:.5rem;">Let's make a book for your little one.</h2>
+    <p style="color:rgba(255,255,255,.85);margin-bottom:2rem;">Browse the full collection and customize a book that's 100% theirs.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="shop.html" class="btn-primary yellow lg">Shop the Collection →</a>
+      <a href="freebie.html" class="btn-ghost">Grab a Free Template</a>
     </div>
   </div>
 </section>
+
+<div class="wave" style="background:var(--teal);"><svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,20 C480,70 960,10 1440,50 L1440,70 L0,70 Z" fill="var(--dark2)"/></svg></div>
 
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
       <div class="footer-logo">📖 Little Book Co.</div>
       <p>Personalized learning books made with love, for little ones who deserve to feel special.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="TikTok"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.27 8.27 0 0 0 4.84 1.55V6.79a4.85 4.85 0 0 1-1.07-.1z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="Etsy"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M10.45 0C4.677 0 0 4.677 0 10.45c0 5.772 4.677 10.45 10.45 10.45 5.772 0 10.45-4.678 10.45-10.45C20.9 4.677 16.222 0 10.45 0zm3.983 5.854c.165 0 .286.11.286.275 0 .11-.055.22-.11.275l-.55.495c-.11.11-.22.11-.33.055-.605-.385-1.32-.605-2.035-.605-1.87 0-3.245 1.43-3.245 3.3 0 1.76 1.375 3.19 3.245 3.19.715 0 1.43-.22 1.98-.605l.495.495c.11.11.11.22 0 .33-.55.44-1.265.66-1.98.66-2.2 0-3.96-1.76-3.96-3.96 0-2.255 1.76-4.015 3.96-4.015.77 0 1.485.22 2.145.66l.099-.55z"/></svg></a>
+      </div>
     </div>
     <div class="footer-links-col">
       <div class="footer-col"><h4>Shop</h4><a href="shop.html">All Products</a><a href="shop.html">Preschool</a><a href="shop.html">Kindergarten</a></div>
@@ -146,17 +210,17 @@
       <div class="footer-col"><h4>Help</h4><a href="#">FAQ</a><a href="#">Shipping</a><a href="#">Contact</a></div>
     </div>
   </div>
-  <div class="footer-bottom">
-    <p>© 2026 Little Book Co. All rights reserved.</p>
-    <p>Made with 💛 for little learners everywhere.</p>
-  </div>
+  <div class="footer-bottom"><p>© 2026 Little Book Co. All rights reserved.</p><p>Made with 💛 for little learners everywhere.</p></div>
 </footer>
 
 <script>
-window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20); });
-document.getElementById('hamburger').addEventListener('click', () => { document.getElementById('mobileMenu').classList.toggle('open'); document.getElementById('hamburger').classList.toggle('open'); });
-const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20));
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+});
+const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 </body>
 </html>
