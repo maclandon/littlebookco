@@ -111,7 +111,7 @@ body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(-
 .hero-text h1 {
   font-family: 'Fredoka One', cursive;
   font-size: clamp(2.8rem, 5vw, 4.5rem);
-  line-height: 1.05; color: var(--text);
+  line-height: 1.05; color: #2a2a2a;
   margin-bottom: 1.25rem;
 }
 .hero-text h1 em { font-style: normal; color: var(--teal-dark); }
@@ -417,13 +417,13 @@ body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(-
 .footer-brand p { font-size: .88rem; line-height: 1.6; margin-bottom: 1.5rem; }
 .footer-social { display: flex; gap: .75rem; }
 .footer-social a {
-  width: 38px; height: 38px; border-radius: 10px;
+  width: 44px; height: 44px; border-radius: 10px;
   background: rgba(255,255,255,0.1);
   display: flex; align-items: center; justify-content: center;
   color: rgba(255,255,255,0.7); text-decoration: none;
   transition: all .2s;
 }
-.footer-social a:hover { background: var(--teal); color: white; }
+.footer-social a:hover { background: rgba(255,255,255,0.25); color: white; }
 .footer-links-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
 .footer-col h4 { color: white; font-size: .85rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: .05em; text-transform: uppercase; }
 .footer-col a { display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: .85rem; margin-bottom: .6rem; transition: color .2s; }
@@ -452,6 +452,8 @@ body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(-
 }
 @media (max-width: 600px) {
   .age-tiles { grid-template-columns: repeat(2, 1fr); }
+  .age-tile-emoji { font-size: 2.8rem; }
+  .age-tile-label { font-size: .85rem; }
   .products-grid { grid-template-columns: 1fr; }
   .footer-links-col { grid-template-columns: 1fr 1fr; }
   .email-card { padding: 2rem 1.5rem; }
