@@ -450,6 +450,9 @@ body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(-
   .viral-inner { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr; gap: 2.5rem; }
 }
+@media (max-width: 960px) {
+  #reviewsGrid { grid-template-columns: repeat(2, 1fr) !important; }
+}
 @media (max-width: 600px) {
   .age-tiles { grid-template-columns: repeat(2, 1fr); }
   .age-tile-emoji { font-size: 2.8rem; }
@@ -459,6 +462,7 @@ body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(-
   .email-card { padding: 2rem 1.5rem; }
   .nav { padding: 1rem 1.25rem; }
   .viral-stats { grid-template-columns: 1fr 1fr; }
+  #reviewsGrid { grid-template-columns: 1fr !important; }
 }
 </style>
 </head>
@@ -747,41 +751,86 @@ body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(-
 <!-- WAVE -->
 <div class="wave-divider" style="background:var(--teal);">
   <svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-    <path d="M0,50 C360,0 1080,70 1440,30 L1440,70 L0,70 Z" fill="var(--rose-light)"/>
+    <path d="M0,50 C360,0 1080,70 1440,30 L1440,70 L0,70 Z" fill="white"/>
   </svg>
 </div>
 
-<!-- REVIEWS COLOR BLOCK -->
-<section class="color-block rose-bg">
-  <div class="color-block-inner">
-    <div>
-      <div class="section-eyebrow" style="background:rgba(242,120,138,0.2);color:var(--rose-dark);">Real Families</div>
-      <h2 style="color:var(--text);">Parents are <em style="color:var(--rose);">obsessed.</em></h2>
-      <p style="color:var(--text-light);">967+ five-star reviews on Etsy. Here's what families are saying.</p>
-      <a href="shop.html" class="btn-primary" style="background:var(--rose);box-shadow:0 4px 0 var(--rose-dark);">Read All Reviews →</a>
-    </div>
-    <div class="review-stack">
-      <div class="review-card reveal">
-        <div class="review-stars">⭐⭐⭐⭐⭐</div>
-        <p>"She recognized her own name in print for the first time with this book. I cried."</p>
-        <div class="review-author">— Jessica T., mom of 2</div>
-      </div>
-      <div class="review-card reveal">
-        <div class="review-stars">⭐⭐⭐⭐⭐</div>
-        <p>"My son asks to do his book every single morning before school. It's his favorite thing."</p>
-        <div class="review-author">— Marcus R., dad of 3</div>
-      </div>
-      <div class="review-card reveal">
-        <div class="review-stars">⭐⭐⭐⭐⭐</div>
-        <p>"Best educational purchase I've made. Period. Already ordered one for my niece."</p>
-        <div class="review-author">— Amanda L.</div>
-      </div>
+<!-- REVIEWS SECTION -->
+<section style="background:white;padding:4rem 2.5rem;">
+  <div style="max-width:1100px;margin:0 auto;text-align:center;">
+    <h2 style="font-family:'Fredoka One',cursive;font-size:clamp(1.8rem,3vw,2.8rem);margin-bottom:.5rem;">⭐ What real families are saying</h2>
+    <p style="font-size:1rem;color:var(--text-light);margin-bottom:2.5rem;">4.9 out of 5 · 64 verified Etsy reviews</p>
+    <div id="reviewsGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;text-align:left;"></div>
+    <div style="margin-top:2.5rem;">
+      <a href="https://www.etsy.com/shop/LittleLearningBookCo" target="_blank" class="btn-primary lg">See All Reviews on Etsy →</a>
     </div>
   </div>
 </section>
+<script>
+(function(){
+const reviews=[
+{name:"Sara",text:"So cute! Excited to use this with my toddler!",date:"Apr 2026"},
+{name:"Alyson",text:"This arrived so quickly and is the cutest learning book ever!!! My 2.5 year old loves it!!",date:"Feb 2026"},
+{name:"Christy",text:"This is perfect for my son! He loves it! Super cute sports theme and helpful activities for preschool!",date:"Feb 2026"},
+{name:"Marie",text:"This was amazing, thank you!",date:"Jan 2026"},
+{name:"Etsy buyer",text:"So good! Love the book!",date:"Dec 2025"},
+{name:"Carmencita",text:"My granddaughter will use this and help her with school",date:"Dec 2025"},
+{name:"Liz",text:"Lovely item for little ones! Owner is amazing!",date:"Dec 2025"},
+{name:"Liz",text:"Such a cute, helpful gift for little ones just learning these skills! Owner of the shop is WONDERFUL!!! Love supporting small shops and this one is an example as to why!",date:"Dec 2025"},
+{name:"Etsy buyer",text:"After getting a preschool book for our son, we realized they are the perfect special gift and got three more for the 4 year olds in our life! The books are beautiful and make kids feel so special as they learn essential skills. We love them!",date:"Dec 2025"},
+{name:"Liz",text:"Seller was amazing and was so helpful with a mistake I made when ordering! Thank you!!!",date:"Nov 2025"},
+{name:"Vicki",text:"Good quality and customer service",date:"Nov 2025"},
+{name:"Natalie",text:"Came super quick and is exactly as described! Love it!",date:"Nov 2025"},
+{name:"Heather",text:"Super cute and good quality",date:"Oct 2025"},
+{name:"Teresa",text:"This is just perfect for my granddaughter",date:"Oct 2025"},
+{name:"Korey",text:"Super cute gift for TKers!",date:"Oct 2025"},
+{name:"Catalina",text:"Always using it with my toddlers. Great and fun way of learning",date:"Sep 2025"},
+{name:"Catalina",text:"Excellent resource for my babies to start their learning adventure",date:"Aug 2025"},
+{name:"Etsy buyer",text:"My 4 year old loves it",date:"Aug 2025"},
+{name:"Hanna",text:"My toddler loves his book!",date:"Aug 2025"},
+{name:"Amber",text:"Loved the outcome of the learning book, so nice to have as a gift.",date:"Jun 2025"},
+{name:"Amber",text:"Gave as a gift and my friends loves it for her kids.",date:"Jun 2025"},
+{name:"Amber",text:"Great book, the kids loved it.",date:"Jun 2025"},
+{name:"Amber",text:"Books came out so nice! Gave as a gift and they loved them.",date:"Jun 2025"},
+{name:"Leah",text:"Product was as it was expected",date:"Jun 2025"},
+{name:"Brittany",text:"This is the perfect gift idea for all your friends kids. It\u2019s high quality, great customer service, and speedy! Cannot recommend enough.",date:"May 2025"},
+{name:"Etsy buyer",text:"Great product, my daughter is starting kindergarten and this is a great book to help her with the transition!",date:"May 2025"},
+{name:"Kylee",text:"As described \u2014 well crafted and our 3yo daughter enjoys it!",date:"Apr 2025"},
+{name:"Brooke",text:"Such a sweet customized learning book for my preschooler! All the pages are very detailed and thought out, laminated and beautifully done. Our book got lost in the mail but they sent another \u2014 such great customer service! Would make an adorable gift. Highly recommend!!!",date:"Apr 2025"},
+{name:"Bailey",text:"Perfect gift for my daughter!",date:"Apr 2025"},
+{name:"Fernesha",text:"My baby loves it.",date:"Mar 2025"},
+{name:"Skylar",text:"Love this product! Can\u2019t wait to use it",date:"Mar 2025"},
+{name:"Etsy buyer",text:"Super cute and love that it\u2019s dry erase and even came with a marker. Also love that it has the name on the front and on the inside to trace!",date:"Mar 2025"},
+{name:"Etsy buyer",text:"I ordered the sports themed books for my Preschool and Kindergarten age nephews. They are absolute perfection! The quality was exceptional, the personalization is adorable and the delivery was faster than fast. Will definitely order again!",date:"Mar 2025"},
+{name:"Bailey",text:"A great gift for my nieces!",date:"Mar 2025"},
+{name:"Kristyn",text:"Love the book! Exactly what I expected.",date:"Mar 2025"},
+{name:"Ellen",text:"Such a great gift for a little one getting ready for pre-school. The activity book is so well made.",date:"Feb 2025"},
+{name:"FARIHA",text:"High quality. Very pleased with the book!",date:"Feb 2025"},
+{name:"Valerie",text:"Super happy with this book! My 4 year old loves it!",date:"Feb 2025"},
+{name:"Eileen",text:"Sent as a gift \u2014 by all reports the 4 year old that got it has spent much time working with it and enjoys it.",date:"Feb 2025"},
+{name:"Etsy buyer",text:"Such a great activity book! Great quality and super cute! Love the personalization",date:"Jan 2025"},
+{name:"Candice",text:"Great quality! My son is going to love it",date:"Jan 2025"},
+{name:"Sidney",text:"Such a cute gift! Great quality and fast shipping!",date:"Jan 2025"},
+{name:"Jessica",text:"Exactly as pictured. Great quality. My son loves it!",date:"Jan 2025"},
+{name:"Megan",text:"Great quality! Exactly as described and quick delivery",date:"Dec 2024"},
+{name:"Barbara",text:"It was exactly what I was looking for.",date:"Dec 2024"},
+{name:"Etsy buyer",text:"Great purchase for my money",date:"Dec 2024"},
+{name:"Ruth",text:"Far nicer than I expected. So very pleased",date:"Dec 2024"},
+{name:"Etsy buyer",text:"Adorable I love it so much",date:"Nov 2024"},
+{name:"Abby",text:"Perfect Gift for Littles. Everything I expected. Will do future orders!!",date:"Oct 2024"},
+{name:"Abby",text:"Everything about it was perfect!! Would definitely recommend and purchase in the future!",date:"Oct 2024"},
+{name:"MALINDA",text:"Something fun and new to try",date:"Aug 2024"},
+{name:"Jaime",text:"I\u2019m thrilled with this purchase! It\u2019s high-quality, it covers essential skills perfectly suited for kindergarten. Highly recommend it to other parents. Five stars!",date:"May 2024"},
+{name:"Mahta",text:"Great resource for future kindergarteners and is extremely child friendly!",date:"May 2024"},
+{name:"Etsy buyer",text:"Fun and easy! My son loves using his special book!",date:"May 2024"},
+{name:"Erica",text:"This workbook is amazing! My son loves learning and when this arrived he was so excited. The tracing is perfect for my little learner to learn how to write letters and numbers. I can\u2019t recommend this little learning book enough!",date:"May 2024"},
+];
+document.getElementById('reviewsGrid').innerHTML=reviews.map(r=>`<div style="background:white;border-radius:20px;border:2px solid #f0ebe3;box-shadow:0 4px 0 #e8e0d8;padding:1.5rem;"><strong style="font-size:.9rem;">${r.name}</strong><div style="margin:.4rem 0;">⭐⭐⭐⭐⭐</div><p style="font-style:italic;font-size:.88rem;color:var(--text-light);line-height:1.6;margin-bottom:.75rem;">"${r.text}"</p><span style="font-size:.75rem;color:#aaa;">${r.date}</span></div>`).join('');
+})();
+</script>
 
 <!-- WAVE -->
-<div class="wave-divider" style="background:var(--rose-light);">
+<div class="wave-divider" style="background:white;">
   <svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
     <path d="M0,30 C480,70 960,0 1440,50 L1440,70 L0,70 Z" fill="#1a1a2e"/>
   </svg>
