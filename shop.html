@@ -23,8 +23,19 @@
 }
 .modal-img {
   background: var(--teal-pale); border-radius: 24px 0 0 24px;
-  display: flex; align-items: center; justify-content: center; min-height: 350px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 350px; padding: 1.5rem;
 }
+.modal-main-img {
+  width: 100%; max-height: 300px; object-fit: contain; border-radius: 12px; margin-bottom: .75rem;
+}
+.modal-thumbs {
+  display: flex; gap: 6px; justify-content: center; flex-wrap: wrap;
+}
+.modal-thumb {
+  width: 10px; height: 10px; border-radius: 50%; border: none; cursor: pointer;
+  background: rgba(0,0,0,0.15); transition: background .2s, transform .2s; padding: 0;
+}
+.modal-thumb.active, .modal-thumb:hover { background: var(--teal); transform: scale(1.3); }
 .modal-book {
   width: 120px; height: 160px; border-radius: 4px 14px 14px 4px;
   background: var(--teal); box-shadow: -8px 8px 0 rgba(0,0,0,0.15);
@@ -106,11 +117,13 @@
 <section class="section" style="padding-top:2rem;">
   <div class="inner">
     <div class="shop-filters">
-      <button class="filter-btn active" onclick="filterProducts('all', this)">All Ages</button>
-      <button class="filter-btn" onclick="filterProducts('preschool', this)">Preschool (3–5)</button>
+      <button class="filter-btn active" onclick="filterProducts('all', this)">All Products</button>
+      <button class="filter-btn" onclick="filterProducts('preschool', this)">Preschool</button>
       <button class="filter-btn" onclick="filterProducts('kindergarten', this)">Kindergarten</button>
       <button class="filter-btn" onclick="filterProducts('first-grade', this)">1st Grade</button>
       <button class="filter-btn" onclick="filterProducts('second-grade', this)">2nd Grade</button>
+      <button class="filter-btn" onclick="filterProducts('bundles', this)">Bundles & Sets</button>
+      <button class="filter-btn" onclick="filterProducts('special', this)">Special Occasion</button>
     </div>
 
     <div class="shop-grid" id="shopGrid">
@@ -123,7 +136,9 @@
 <div class="product-detail-modal" id="productModal">
   <div class="modal-card">
     <button class="modal-close" onclick="closeModal()">✕</button>
-    <div class="modal-img">
+    <div class="modal-img" id="modalImgZone">
+      <img class="modal-main-img" id="modalMainImg" src="" alt="" style="display:none;">
+      <div class="modal-thumbs" id="modalThumbs"></div>
       <div class="modal-book" id="modalBookVisual">
         <div style="font-size:1.5rem" id="modalEmoji">🌈</div>
         <div style="font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.8;margin:.3rem 0" id="modalGrade">Preschool</div>
@@ -133,27 +148,22 @@
     <div class="modal-body">
       <div class="section-tag" id="modalTag">Best Seller</div>
       <div class="modal-title" id="modalTitle">Preschool Learning Book</div>
-      <div class="modal-price">$29.99</div>
-      <div class="modal-desc" id="modalDesc">A fully personalized, reusable learning book designed for ages 3–5. Covers ABC's, numbers 1–20, shapes, colors, patterns, and more.</div>
+      <div class="modal-price" id="modalPrice">$29.70</div>
+      <div class="modal-desc" id="modalDesc"></div>
+      <ul id="modalFeatures" style="list-style:none;margin-bottom:1.25rem;display:flex;flex-direction:column;gap:.4rem;"></ul>
+      <style>#modalFeatures li::before{content:"✓ ";color:var(--teal-dark);font-weight:900;}#modalFeatures li{font-size:.85rem;font-weight:600;color:var(--text-light);}</style>
       <div class="customize-form">
-        <div class="form-field">
+        <div class="form-field" id="nameWrap" style="display:flex;flex-direction:column;gap:.3rem;">
           <label>Child's Name</label>
           <input type="text" id="childName" placeholder="e.g. Emma" maxlength="20" oninput="updatePreview()">
         </div>
-        <div class="form-field">
+        <div class="form-field" id="themeWrap" style="display:flex;flex-direction:column;gap:.3rem;">
           <label>Theme</label>
-          <select id="themeSelect">
-            <option>Sports & Games</option>
-            <option>Dinosaurs</option>
-            <option>Unicorns & Magic</option>
-            <option>Outer Space</option>
-            <option>Animals</option>
-            <option>Fairies & Flowers</option>
-          </select>
+          <select id="themeSelect"></select>
         </div>
       </div>
-      <button class="add-to-cart" onclick="addToCart()">Add to Cart — $29.99 🛒</button>
-      <div style="text-align:center;font-size:.78rem;color:var(--text-lighter);margin-top:.75rem">Ships in 3–5 business days · Free returns</div>
+      <a id="etsyBtn" href="#" target="_blank" class="add-to-cart" style="display:block;text-decoration:none;text-align:center;">Order on Etsy →</a>
+      <div style="text-align:center;font-size:.78rem;color:var(--text-lighter);margin-top:.75rem">Ships from New York · Dry-erase markers included · 5★ reviews</div>
     </div>
   </div>
 </div>
@@ -195,21 +205,119 @@
 
 <script>
 const products = [
-  { id: 1, name: "Preschool Learning Book", grade: "Preschool", age: "Ages 3–5", category: "preschool", emoji: "🌈", color: "#6BADA0", tag: "Best Seller", desc: "ABC's, numbers 1–20, shapes, colors, patterns, and tracing practice. Perfect for ages 3–5." },
-  { id: 2, name: "Preschool Homeschool Bundle", grade: "Preschool", age: "Ages 3–5", category: "preschool", emoji: "🎨", color: "#E8A0A8", tag: "Bundle", desc: "Everything in the Preschool book PLUS a bonus homeschool schedule template and activity cards." },
-  { id: 3, name: "Kindergarten Learning Book", grade: "Kindergarten", age: "Ages 5–6", category: "kindergarten", emoji: "⭐", color: "#d4a040", tag: "New", desc: "Sight words, counting to 100, letter formation, and early reading practice." },
-  { id: 4, name: "Kindergarten Math Book", grade: "Kindergarten", age: "Ages 5–6", category: "kindergarten", emoji: "🔢", color: "#7a9bc4", tag: "Popular", desc: "Addition & subtraction to 10, number bonds, comparing numbers, and measurement basics." },
-  { id: 5, name: "First Grade Learning Book", grade: "1st Grade", age: "Ages 6–7", category: "first-grade", emoji: "📚", color: "#8aaa6a", tag: "Popular", desc: "Math facts to 20, reading comprehension, writing sentences, and grammar foundations." },
-  { id: 6, name: "First Grade Reading Book", grade: "1st Grade", age: "Ages 6–7", category: "first-grade", emoji: "📖", color: "#c07060", tag: "", desc: "Phonics, sight words, short stories with comprehension questions, and vocabulary building." },
-  { id: 7, name: "Second Grade Learning Book", grade: "2nd Grade", age: "Ages 7–8", category: "second-grade", emoji: "✏️", color: "#9070b0", tag: "New", desc: "Multiplication intro, chapter-length reading, research writing, and geography basics." },
-  { id: 8, name: "Summer Bridge Book", grade: "All Grades", age: "Ages 4–8", category: "all", emoji: "☀️", color: "#d09050", tag: "Seasonal", desc: "Keep skills sharp all summer. Choose from Preschool–2nd Grade. Ships just in time for June!" },
+  {
+    id: 1, name: "Preschool Learning Book", grade: "Preschool", age: "Ages 3+", category: "preschool",
+    emoji: "🌈", color: "#6BADA0", tag: "Best Seller", price: "$29.70",
+    etsy: "https://www.etsy.com/listing/1732934322",
+    themes: ["Bows","Fairies","Sports","Animals","Groovy 1","Groovy 2","Love","Cottage","Vehicles","Easter"],
+    images: Array.from({length:16},(_,i)=>`images/product-preschool-learning/product-preschool-learning-${i+1}.jpg`),
+    themeImageMap: {"Bows":7,"Fairies":8,"Sports":9,"Animals":10,"Groovy 1":11,"Groovy 2":12,"Love":13,"Cottage":14,"Vehicles":15,"Easter":16},
+    desc: "19 pages of hands-on activities covering name tracing, feelings & weather, shapes & patterns, letters, beginning sounds, counting, and more. Aligns with Common Core. Comes with 2 free dry-erase markers.",
+    features: ["19 reusable dry-erase pages","Common Core aligned","2 free dry-erase markers included","Ships from New York"]
+  },
+  {
+    id: 2, name: "Preschool Numbers Book", grade: "Preschool", age: "Ages 3+", category: "preschool",
+    emoji: "🔢", color: "#E8A0A8", tag: "", price: "$29.70",
+    etsy: "https://www.etsy.com/listing/4450365359",
+    themes: ["Bows","Vehicles","Cool","Animals"],
+    desc: "13 wipe-clean pages covering numbers 1–10, matching, fill-in-the-missing-numbers, counting, and more. Your child's name on the cover + name tracing inside. 2 free dry-erase markers included.",
+    features: ["13 reusable dry-erase pages","Numbers 1–10 with themed pictures","Name tracing practice","2 free dry-erase markers"]
+  },
+  {
+    id: 3, name: "Personalized Name Learning Book", grade: "Pre-K / K", age: "Ages 3+", category: "preschool",
+    emoji: "✏️", color: "#b0c070", tag: "", price: "$21.99",
+    etsy: "https://www.etsy.com/listing/4429124191",
+    themes: ["Bows","Party","Vehicles","Farm"],
+    desc: "7-page personalized workbook focused entirely on learning their name — from tracing to copying to writing independently. Includes first letter ID, letter count, and find-your-name pages. Reusable with dry-erase marker.",
+    features: ["7 reusable dry-erase pages","Progressive name writing (trace → copy → independent)","First letter & letter count pages","1 free dry-erase marker"]
+  },
+  {
+    id: 4, name: "Interactive Beginning Readers", grade: "K / 1st Grade", age: "Ages 5+", category: "kindergarten",
+    emoji: "📖", color: "#7a9bc4", tag: "Unique", price: "$24.60",
+    etsy: "https://www.etsy.com/listing/1820349389",
+    themes: [],
+    desc: "8 engaging decodable CVC stories where kids fill in missing words and draw pictures — they become the author! Boosts phonics, sight words, and comprehension. Erase and change the stories each time for endless creativity.",
+    features: ["8 decodable CVC stories","Kids fill in words & illustrate","Sight word list included","1 free dry-erase marker"]
+  },
+  {
+    id: 5, name: "Homeschool Binder — Personalized", grade: "All Grades", age: "Ages 3+", category: "bundles",
+    emoji: "📋", color: "#c07090", tag: "Premium", price: "$109.99",
+    etsy: "https://www.etsy.com/listing/4479862015",
+    themes: ["Blooms & Bows"],
+    desc: "Your complete homeschool system in one place. Includes 10 laminated dry-erase learn pages, 100 daily schedules, 30 weekly schedules, 2 yearly planners, reusable routine checklists, goal planners, reading logs, progress trackers, and personalized first/last day posters. Free shipping.",
+    features: ["10 laminated dry-erase pages","100 daily + 30 weekly schedules","Goal planners & progress trackers","Reusable morning & night routine checklists","Free shipping"]
+  },
+  {
+    id: 6, name: "Tracing Little Learning Book", grade: "Pre-K / K", age: "Ages 3+", category: "preschool",
+    emoji: "✍️", color: "#d4a040", tag: "", price: "$22.97",
+    etsy: "https://www.etsy.com/listing/1739999416",
+    themes: ["Blue","Pink","Christmas","Hanukkah"],
+    desc: "Master letters, numbers, and shapes in one beautiful reusable book. 5.5×8.5" for comfortable tracing on the go or at home. Montessori & homeschool friendly. Comes with 1 free dry-erase marker.",
+    features: ["Letters, numbers & shapes tracing","5.5×8.5\" portable size","Montessori & homeschool friendly","1 free dry-erase marker"]
+  },
+  {
+    id: 7, name: "Kindergarten Learning Book", grade: "Kindergarten", age: "Ages 3+", category: "kindergarten",
+    emoji: "⭐", color: "#9070b0", tag: "Best Seller", price: "$29.70",
+    etsy: "https://www.etsy.com/listing/1732937416",
+    themes: ["Bows","Fairies","Sports","Animals","Groovy 1","Groovy 2","Love","Cottage","Vehicles"],
+    desc: "20 pages covering name tracing, feelings, shapes & patterns, beginning sounds, sight words, decodable words, counting, addition & subtraction, and more. Common Core aligned. 2 free dry-erase markers.",
+    features: ["20 reusable dry-erase pages","Sight words & decodable words","Addition & subtraction intro","2 free dry-erase markers"]
+  },
+  {
+    id: 8, name: "First Grade Learning Book", grade: "1st Grade", age: "Ages 3+", category: "first-grade",
+    emoji: "📚", color: "#6BADA0", tag: "Best Seller", price: "$29.70",
+    etsy: "https://www.etsy.com/listing/1774414850",
+    themes: ["Bows","Fairies","Sports","Animals","Groovy 1","Groovy 2","Love","Cottage","Vehicles"],
+    desc: "21 pages covering feelings, alphabet, reading & writing, sight words, counting, addition & subtraction, telling time, money, and more. Common Core aligned. 2 free dry-erase markers included.",
+    features: ["21 reusable dry-erase pages","Telling time & money","Addition & subtraction","2 free dry-erase markers"]
+  },
+  {
+    id: 9, name: "4-Book Set — Preschool Vehicles", grade: "Preschool", age: "Ages 3+", category: "bundles",
+    emoji: "🚗", color: "#d09050", tag: "Bundle", price: "$99.00",
+    etsy: "https://www.etsy.com/listing/4459619639",
+    themes: ["Vehicles"],
+    desc: "4 personalized books in the vehicles theme: Little Learning Book (19 pages), Little Name Book (7 pages), Little Alphabet Book (13 pages), and Little Numbers Book (13 pages). Everything a preschooler needs. Free shipping. Comes with dry-erase markers.",
+    features: ["4 personalized books","Learning, Name, Alphabet & Numbers","Dry-erase markers included","Free shipping"]
+  },
+  {
+    id: 10, name: "Alphabet Tracing Book", grade: "Pre-K / K", age: "Ages 3+", category: "preschool",
+    emoji: "🔤", color: "#70a0c0", tag: "", price: "$29.80",
+    etsy: "https://www.etsy.com/listing/4345761493",
+    themes: ["Checkers","Floral","Bows","Smiles","Strawberries","Stripes","Vehicles"],
+    desc: "13 wipe-clean pages covering A–Z uppercase & lowercase tracing, letter sound recognition with icons, full alphabet practice, and a creative try-it page. Name on cover + name tracing inside. 1 free dry-erase marker.",
+    features: ["13 reusable dry-erase pages","A–Z uppercase & lowercase","Sound recognition icons","1 free dry-erase marker"]
+  },
+  {
+    id: 11, name: "4-Book Set — Preschool Bows", grade: "Preschool", age: "Ages 3+", category: "bundles",
+    emoji: "🎀", color: "#E8A0A8", tag: "Most Popular", price: "$99.00",
+    etsy: "https://www.etsy.com/listing/4435357059",
+    themes: ["Bows"],
+    desc: "4 personalized books in the best-selling bows theme: Little Learning Book (19 pages), Little Name Book (7 pages), Little Alphabet Book (13 pages), and Little Numbers Book (13 pages). Comes with 4 dry-erase markers. Free shipping.",
+    features: ["4 personalized books","Learning, Name, Alphabet & Numbers","4 dry-erase markers included","Free shipping"]
+  },
+  {
+    id: 12, name: "Second Grade Learning Book", grade: "2nd Grade", age: "Ages 3+", category: "second-grade",
+    emoji: "🎓", color: "#8aaa6a", tag: "", price: "$29.70",
+    etsy: "https://www.etsy.com/listing/1774417124",
+    themes: ["Bows","Fairies","Sports","Animals","Groovy 1","Groovy 2","Love","Cottage","Transportation"],
+    desc: "20 pages covering feelings, reading (vowels, compound words, prefixes/suffixes), addition & subtraction, even/odd numbers, skip counting, word problems, telling time, money, and more. Common Core aligned.",
+    features: ["20 reusable dry-erase pages","Advanced reading skills","Word problems & money","2 free dry-erase markers"]
+  },
+  {
+    id: 13, name: "Birthday Tradition Book", grade: "All Ages", age: "Ages 3+", category: "special",
+    emoji: "🎂", color: "#c07090", tag: "Gift Idea", price: "$28.70",
+    etsy: "https://www.etsy.com/listing/1853611699",
+    themes: ["Blue","Pink"],
+    desc: "Start a birthday tradition! Personalized cover with your child's name and custom birthday date they trace each year. Activities include decorating a cake, making a wish, counting balloons, and matching games. Plus 5 permanent birthday note pages to keep forever.",
+    features: ["Reusable activities + permanent memory pages","Birthday traced each year","Personalized name & date","1 free dry-erase marker"]
+  },
 ];
 
 let currentProduct = null;
 
 function renderProducts(filter) {
   const grid = document.getElementById('shopGrid');
-  const filtered = filter === 'all' ? products : products.filter(p => p.category === filter || p.category === 'all');
+  const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
   grid.innerHTML = filtered.map(p => `
     <div class="product-card-full" onclick="openModal(${p.id})" style="cursor:pointer;">
       <div class="pcf-img" style="background:${p.color}22;">
@@ -220,30 +328,88 @@ function renderProducts(filter) {
       <div class="pcf-body">
         ${p.tag ? `<div class="pcf-tag">${p.tag}</div>` : '<div style="height:1.6rem"></div>'}
         <h3>${p.name}</h3>
-        <p>${p.age} · ${p.desc.substring(0, 60)}…</p>
-        <div class="pcf-price">$29.99</div>
+        <p>${p.age} · ${p.desc.substring(0, 65)}…</p>
+        <div class="pcf-price">${p.price}</div>
         <button class="btn-primary sm" onclick="event.stopPropagation();openModal(${p.id})">Customize →</button>
       </div>
     </div>
   `).join('');
 }
 
-function filterProducts(category, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderProducts(category);
-}
-
 function openModal(id) {
   currentProduct = products.find(p => p.id === id);
   document.getElementById('modalTitle').textContent = currentProduct.name;
-  document.getElementById('modalTag').textContent = currentProduct.tag || 'Personalized';
+  document.getElementById('modalTag').textContent = currentProduct.tag || currentProduct.grade;
   document.getElementById('modalDesc').textContent = currentProduct.desc;
   document.getElementById('modalEmoji').textContent = currentProduct.emoji;
   document.getElementById('modalGrade').textContent = currentProduct.grade;
+  document.getElementById('modalPrice').textContent = currentProduct.price;
   document.getElementById('modalBookVisual').style.background = currentProduct.color;
   document.getElementById('childName').value = '';
   document.getElementById('modalNamePreview').textContent = 'Your Child';
+
+  // Populate features
+  const featuresEl = document.getElementById('modalFeatures');
+  featuresEl.innerHTML = currentProduct.features.map(f => `<li>${f}</li>`).join('');
+
+  // Populate themes
+  const themeSelect = document.getElementById('themeSelect');
+  const themeWrap = document.getElementById('themeWrap');
+  if (currentProduct.themes.length > 0) {
+    themeSelect.innerHTML = currentProduct.themes.map(t => `<option>${t}</option>`).join('');
+    themeWrap.style.display = 'flex';
+  } else {
+    themeWrap.style.display = 'none';
+  }
+
+  // Image gallery
+  const mainImg = document.getElementById('modalMainImg');
+  const bookVisual = document.getElementById('modalBookVisual');
+  const thumbsEl = document.getElementById('modalThumbs');
+  thumbsEl.innerHTML = '';
+
+  if (currentProduct.images && currentProduct.images.length > 0) {
+    mainImg.src = currentProduct.images[0];
+    mainImg.alt = currentProduct.name;
+    mainImg.style.display = 'block';
+    bookVisual.style.display = 'none';
+    for (let i = 0; i < 6; i++) {
+      const dot = document.createElement('button');
+      dot.className = 'modal-thumb' + (i === 0 ? ' active' : '');
+      dot.onclick = () => {
+        mainImg.src = currentProduct.images[i];
+        thumbsEl.querySelectorAll('.modal-thumb').forEach(d => d.classList.remove('active'));
+        dot.classList.add('active');
+      };
+      thumbsEl.appendChild(dot);
+    }
+  } else {
+    mainImg.style.display = 'none';
+    bookVisual.style.display = 'flex';
+    thumbsEl.innerHTML = '';
+  }
+
+  // Theme → image mapping
+  if (currentProduct.themeImageMap) {
+    themeSelect.onchange = () => {
+      const idx = currentProduct.themeImageMap[themeSelect.value];
+      if (idx && currentProduct.images) {
+        mainImg.src = currentProduct.images[idx - 1];
+        thumbsEl.querySelectorAll('.modal-thumb').forEach(d => d.classList.remove('active'));
+      }
+    };
+  } else {
+    themeSelect.onchange = null;
+  }
+
+  // Show/hide name field
+  const nameWrap = document.getElementById('nameWrap');
+  nameWrap.style.display = currentProduct.category === 'special' || true ? 'flex' : 'none';
+
+  // Set Etsy link
+  document.getElementById('etsyBtn').href = currentProduct.etsy;
+  document.getElementById('etsyBtn').textContent = `Order on Etsy — ${currentProduct.price} →`;
+
   document.getElementById('productModal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
