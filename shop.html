@@ -4,95 +4,31 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shop — Little Book Co.</title>
-<meta name="description" content="Browse our full collection of personalized, reusable learning books for preschool through second grade.">
+<meta name="description" content="Browse all 13 personalized, reusable learning books for preschool through 2nd grade.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Playfair+Display:ital,wght@0,700;1,600;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
-.product-detail-modal {
-  display: none; position: fixed; inset: 0; z-index: 200;
-  background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
-  align-items: center; justify-content: center; padding: 1.5rem;
-}
-.product-detail-modal.open { display: flex; }
-.modal-card {
-  background: white; border-radius: 24px;
-  max-width: 700px; width: 100%; max-height: 90vh; overflow-y: auto;
-  display: grid; grid-template-columns: 1fr 1fr; position: relative;
-}
-.modal-img {
-  background: var(--teal-pale); border-radius: 24px 0 0 24px;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 350px; padding: 1.5rem;
-}
-.modal-main-img {
-  width: 100%; max-height: 300px; object-fit: contain; border-radius: 12px; margin-bottom: .75rem;
-}
-.modal-thumbs {
-  display: flex; gap: 6px; justify-content: center; flex-wrap: wrap;
-}
-.modal-thumb {
-  width: 10px; height: 10px; border-radius: 50%; border: none; cursor: pointer;
-  background: rgba(0,0,0,0.15); transition: background .2s, transform .2s; padding: 0;
-}
-.modal-thumb.active, .modal-thumb:hover { background: var(--teal); transform: scale(1.3); }
-.modal-book {
-  width: 120px; height: 160px; border-radius: 4px 14px 14px 4px;
-  background: var(--teal); box-shadow: -8px 8px 0 rgba(0,0,0,0.15);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; color: white; padding: 1rem; font-family: 'Nunito', sans-serif;
-}
-.modal-body { padding: 2.5rem; }
-.modal-close {
-  position: absolute; top: 1rem; right: 1rem;
-  background: rgba(0,0,0,0.08); border: none; border-radius: 50%;
-  width: 36px; height: 36px; font-size: 1.1rem; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: background .2s;
-}
-.modal-close:hover { background: rgba(0,0,0,0.15); }
-.modal-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; margin-bottom: .5rem; }
-.modal-price { font-size: 1.3rem; font-weight: 800; color: var(--teal-dark); margin-bottom: 1rem; }
-.modal-desc { font-size: .88rem; color: var(--text-light); line-height: 1.65; margin-bottom: 1.5rem; }
-.customize-form { display: flex; flex-direction: column; gap: .75rem; margin-bottom: 1.25rem; }
-.form-field { display: flex; flex-direction: column; gap: .3rem; }
-.form-field label { font-size: .8rem; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: .04em; }
-.form-field input, .form-field select {
-  padding: .65rem 1rem; border: 2px solid var(--border); border-radius: 12px;
-  font-family: 'Nunito', sans-serif; font-size: .9rem; font-weight: 600;
-  outline: none; transition: border-color .2s; background: var(--cream);
-}
-.form-field input:focus, .form-field select:focus { border-color: var(--teal); }
-.add-to-cart {
-  width: 100%; padding: 1rem; border-radius: 50px;
-  background: var(--teal); color: white; border: none;
-  font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 800;
-  cursor: pointer; transition: all .2s;
-}
-.add-to-cart:hover { background: var(--teal-dark); transform: translateY(-2px); }
-.cart-toast {
+.shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.75rem; }
+@media (max-width: 600px) { .shop-grid { grid-template-columns: 1fr 1fr; gap: 1rem; } }
+@media (max-width: 420px) { .shop-grid { grid-template-columns: 1fr; } }
+.toast {
   position: fixed; bottom: 2rem; right: 2rem; z-index: 300;
-  background: var(--text); color: white;
+  background: var(--dark2); color: white;
   padding: 1rem 1.75rem; border-radius: 50px;
-  font-size: .9rem; font-weight: 700;
+  font-size: .9rem; font-weight: 700; box-shadow: 0 4px 0 rgba(0,0,0,0.3);
   transform: translateY(100px); opacity: 0; transition: all .35s;
 }
-.cart-toast.show { transform: translateY(0); opacity: 1; }
-@media (max-width: 600px) {
-  .modal-card { grid-template-columns: 1fr; }
-  .modal-img { border-radius: 24px 24px 0 0; min-height: 200px; }
-}
+.toast.show { transform: translateY(0); opacity: 1; }
 </style>
 </head>
 <body>
 
 <nav class="nav" id="nav">
-  <a href="index.html" class="nav-logo">
-    <div class="nav-logo-icon">📖</div>
-    <span>Little Book Co.</span>
-  </a>
+  <a href="index.html" class="nav-logo"><img src="Logo-2.png" alt="Little Book Co." class="nav-logo-img" style="height:36px;width:auto;"><span class="nav-logo-text">Little Book Co.</span></a>
   <ul class="nav-links">
-    <li><a href="shop.html" style="color:var(--teal)">Shop</a></li>
+    <li><a href="shop.html" class="active">Shop</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="blog.html">Blog</a></li>
     <li><a href="freebie.html">Free Download</a></li>
@@ -101,241 +37,157 @@
   <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="shop.html">Shop</a>
-  <a href="about.html">About</a>
-  <a href="blog.html">Blog</a>
-  <a href="freebie.html">Free Download</a>
+  <a href="shop.html">Shop</a><a href="about.html">About</a><a href="blog.html">Blog</a><a href="freebie.html">Free Download</a>
   <a href="shop.html" class="mobile-cta">Shop Now ✨</a>
 </div>
 
-<section class="page-hero">
-  <div class="section-tag">Our Collection</div>
-  <h1>Find the perfect book for <em>your little learner.</em></h1>
-  <p>Every book is personalized, printed fresh, and made to last with dry-erase pages they'll use for years.</p>
+<div class="announce-bar">🎉 Free shipping on orders $35+ — <a href="#">Shop the collection →</a></div>
+
+<!-- PAGE HERO -->
+<section class="page-hero page-hero-teal">
+  <div class="page-hero-deco" style="top:20%;left:3%;animation:float-deco 4s ease-in-out infinite;">✏️</div>
+  <div class="page-hero-deco" style="top:15%;right:5%;animation:float-deco 5s ease-in-out infinite 1s;">⭐</div>
+  <div class="page-hero-deco" style="bottom:20%;left:8%;animation:float-deco 6s ease-in-out infinite .5s;">🎨</div>
+  <div class="section-eyebrow eyebrow-teal">Our Collection</div>
+  <h1>Find the perfect book for<br><em>your little learner.</em></h1>
+  <p>Every book is printed fresh with your child's name, made to last with reusable dry-erase pages.</p>
 </section>
 
-<section class="section" style="padding-top:2rem;">
+<div class="wave"><svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--cream)"/></svg></div>
+
+<!-- SHOP GRID -->
+<section class="section" style="background:var(--cream);padding-top:2rem;">
   <div class="inner">
-    <div class="shop-filters">
-      <button class="filter-btn active" onclick="filterProducts('all', this)">All Products</button>
-      <button class="filter-btn" onclick="filterProducts('preschool', this)">Preschool</button>
-      <button class="filter-btn" onclick="filterProducts('kindergarten', this)">Kindergarten</button>
-      <button class="filter-btn" onclick="filterProducts('first-grade', this)">1st Grade</button>
-      <button class="filter-btn" onclick="filterProducts('second-grade', this)">2nd Grade</button>
-      <button class="filter-btn" onclick="filterProducts('bundles', this)">Bundles & Sets</button>
-      <button class="filter-btn" onclick="filterProducts('special', this)">Special Occasion</button>
-    </div>
-
-    <div class="shop-grid" id="shopGrid">
-      <!-- Product cards injected by JS -->
-    </div>
+    <div class="filter-wrap" id="filterWrap"></div>
+    <div class="shop-grid" id="shopGrid"></div>
   </div>
 </section>
 
-<!-- PRODUCT MODAL -->
-<div class="product-detail-modal" id="productModal">
-  <div class="modal-card">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <div class="modal-img" id="modalImgZone">
-      <img class="modal-main-img" id="modalMainImg" src="" alt="" style="display:none;">
-      <div class="modal-thumbs" id="modalThumbs"></div>
-      <div class="modal-book" id="modalBookVisual">
-        <div style="font-size:1.5rem" id="modalEmoji">🌈</div>
-        <div style="font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.8;margin:.3rem 0" id="modalGrade">Preschool</div>
-        <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:.85rem" id="modalNamePreview">Emma</div>
-      </div>
-    </div>
-    <div class="modal-body">
-      <div class="section-tag" id="modalTag">Best Seller</div>
-      <div class="modal-title" id="modalTitle">Preschool Learning Book</div>
-      <div class="modal-price" id="modalPrice">$29.70</div>
-      <div class="modal-desc" id="modalDesc"></div>
-      <ul id="modalFeatures" style="list-style:none;margin-bottom:1.25rem;display:flex;flex-direction:column;gap:.4rem;"></ul>
-      <style>#modalFeatures li::before{content:"✓ ";color:var(--teal-dark);font-weight:900;}#modalFeatures li{font-size:.85rem;font-weight:600;color:var(--text-light);}</style>
-      <div class="customize-form">
-        <div class="form-field" id="nameWrap" style="display:flex;flex-direction:column;gap:.3rem;">
-          <label>Child's Name</label>
-          <input type="text" id="childName" placeholder="e.g. Emma" maxlength="20" oninput="updatePreview()">
-        </div>
-        <div class="form-field" id="themeWrap" style="display:flex;flex-direction:column;gap:.3rem;">
-          <label>Theme</label>
-          <select id="themeSelect"></select>
-        </div>
-      </div>
-      <a id="etsyBtn" href="#" target="_blank" class="add-to-cart" style="display:block;text-decoration:none;text-align:center;">Order on Etsy →</a>
-      <div style="text-align:center;font-size:.78rem;color:var(--text-lighter);margin-top:.75rem">Ships from New York · Dry-erase markers included · 5★ reviews</div>
-    </div>
-  </div>
-</div>
+<!-- WAVE INTO EMAIL -->
+<div class="wave" style="background:var(--cream);"><svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,20 C480,70 960,0 1440,40 L1440,70 L0,70 Z" fill="var(--teal-pale)"/></svg></div>
 
-<div class="cart-toast" id="cartToast">🎉 Added to cart!</div>
+<section class="email-section">
+  <div class="email-card">
+    <div class="email-card-deco">🎁</div>
+    <h2>Free homeschool template</h2>
+    <p>Join 500+ families. Grab our free Canva schedule template — customize it with your child's name and routine.</p>
+    <form class="email-form" onsubmit="handleSub(event)">
+      <input type="email" class="email-input" placeholder="Your email address" required>
+      <button type="submit" class="btn-primary lg">Send My Free Template →</button>
+    </form>
+    <div class="email-fine">No spam, ever.</div>
+  </div>
+</section>
+
+<div class="wave" style="background:var(--teal-pale);"><svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,20 C480,70 960,10 1440,50 L1440,70 L0,70 Z" fill="var(--dark2)"/></svg></div>
 
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
       <div class="footer-logo">📖 Little Book Co.</div>
       <p>Personalized learning books made with love, for little ones who deserve to feel special.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="TikTok"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.27 8.27 0 0 0 4.84 1.55V6.79a4.85 4.85 0 0 1-1.07-.1z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="Etsy"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M10.45 0C4.677 0 0 4.677 0 10.45c0 5.772 4.677 10.45 10.45 10.45 5.772 0 10.45-4.678 10.45-10.45C20.9 4.677 16.222 0 10.45 0zm3.983 5.854c.165 0 .286.11.286.275 0 .11-.055.22-.11.275l-.55.495c-.11.11-.22.11-.33.055-.605-.385-1.32-.605-2.035-.605-1.87 0-3.245 1.43-3.245 3.3 0 1.76 1.375 3.19 3.245 3.19.715 0 1.43-.22 1.98-.605l.495.495c.11.11.11.22 0 .33-.55.44-1.265.66-1.98.66-2.2 0-3.96-1.76-3.96-3.96 0-2.255 1.76-4.015 3.96-4.015.77 0 1.485.22 2.145.66l.099-.55z"/></svg></a>
+      </div>
     </div>
     <div class="footer-links-col">
-      <div class="footer-col">
-        <h4>Shop</h4>
-        <a href="#">Preschool</a>
-        <a href="#">Kindergarten</a>
-        <a href="#">First Grade</a>
-      </div>
-      <div class="footer-col">
-        <h4>Learn</h4>
-        <a href="about.html">About Elle</a>
-        <a href="blog.html">Blog</a>
-        <a href="freebie.html">Free Template</a>
-      </div>
-      <div class="footer-col">
-        <h4>Help</h4>
-        <a href="#">FAQ</a>
-        <a href="#">Shipping</a>
-        <a href="#">Contact</a>
-      </div>
+      <div class="footer-col"><h4>Shop</h4><a href="shop.html">All Products</a><a href="shop.html">Preschool</a><a href="shop.html">Kindergarten</a><a href="shop.html">Bundles</a></div>
+      <div class="footer-col"><h4>Learn</h4><a href="about.html">About Elle</a><a href="blog.html">Blog</a><a href="freebie.html">Free Template</a></div>
+      <div class="footer-col"><h4>Help</h4><a href="#">FAQ</a><a href="#">Shipping</a><a href="#">Contact</a><a href="#">Returns</a></div>
     </div>
   </div>
-  <div class="footer-bottom">
-    <p>© 2026 Little Book Co. All rights reserved.</p>
-    <p>Made with 💛 for little learners everywhere.</p>
-  </div>
+  <div class="footer-bottom"><p>© 2026 Little Book Co. All rights reserved.</p><p>Made with 💛 for little learners everywhere.</p></div>
 </footer>
+
+<!-- PRODUCT MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-img" id="modalImg">
+      <div class="modal-book" id="modalBook">
+        <div class="modal-book-emoji" id="modalEmoji">🌈</div>
+        <div class="modal-book-grade" id="modalGrade">Preschool</div>
+        <div class="modal-book-name" id="modalName">Your Child</div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div id="modalTag" class="pc-tag teal" style="margin-bottom:.75rem;"></div>
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-price" id="modalPrice"></div>
+      <div class="modal-desc" id="modalDesc"></div>
+      <ul class="modal-features" id="modalFeatures"></ul>
+      <div class="form-field" id="nameField">
+        <label class="form-label">Child's Name</label>
+        <input type="text" class="form-input" id="nameInput" placeholder="e.g. Emma" maxlength="20" oninput="updateName()">
+      </div>
+      <div class="form-field" id="themeField">
+        <label class="form-label">Theme</label>
+        <select class="form-select" id="themeSelect"></select>
+      </div>
+      <a class="etsy-btn" id="etsyBtn" href="#" target="_blank">Order on Etsy →</a>
+      <div class="modal-note">Ships from New York · Dry-erase markers included · ⭐ 5-star reviews</div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast">🎉 Added to cart!</div>
 
 <script>
 const products = [
-  {
-    id: 1, name: "Preschool Learning Book", grade: "Preschool", age: "Ages 3+", category: "preschool",
-    emoji: "🌈", color: "#6BADA0", tag: "Best Seller", price: "$29.70",
-    etsy: "https://www.etsy.com/listing/1732934322",
-    themes: ["Bows","Fairies","Sports","Animals","Groovy 1","Groovy 2","Love","Cottage","Vehicles","Easter"],
-    images: Array.from({length:16},(_,i)=>`Images/product-preschool-learning/product-preschool-learning-${i+1}.jpg`),
-    themeImageMap: {"Bows":7,"Fairies":8,"Sports":9,"Animals":10,"Groovy 1":11,"Groovy 2":12,"Love":13,"Cottage":14,"Vehicles":15,"Easter":16},
-    desc: "19 pages of hands-on activities covering name tracing, feelings & weather, shapes & patterns, letters, beginning sounds, counting, and more. Aligns with Common Core. Comes with 2 free dry-erase markers.",
-    features: ["19 reusable dry-erase pages","Common Core aligned","2 free dry-erase markers included","Ships from New York"]
-  },
-  {
-    id: 2, name: "Preschool Numbers Book", grade: "Preschool", age: "Ages 3+", category: "preschool",
-    emoji: "🔢", color: "#E8A0A8", tag: "", price: "$29.70",
-    etsy: "https://www.etsy.com/listing/4450365359",
-    themes: ["Bows","Vehicles","Cool","Animals"],
-    desc: "13 wipe-clean pages covering numbers 1–10, matching, fill-in-the-missing-numbers, counting, and more. Your child's name on the cover + name tracing inside. 2 free dry-erase markers included.",
-    features: ["13 reusable dry-erase pages","Numbers 1–10 with themed pictures","Name tracing practice","2 free dry-erase markers"]
-  },
-  {
-    id: 3, name: "Personalized Name Learning Book", grade: "Pre-K / K", age: "Ages 3+", category: "preschool",
-    emoji: "✏️", color: "#b0c070", tag: "", price: "$21.99",
-    etsy: "https://www.etsy.com/listing/4429124191",
-    themes: ["Bows","Party","Vehicles","Farm"],
-    desc: "7-page personalized workbook focused entirely on learning their name — from tracing to copying to writing independently. Includes first letter ID, letter count, and find-your-name pages. Reusable with dry-erase marker.",
-    features: ["7 reusable dry-erase pages","Progressive name writing (trace → copy → independent)","First letter & letter count pages","1 free dry-erase marker"]
-  },
-  {
-    id: 4, name: "Interactive Beginning Readers", grade: "K / 1st Grade", age: "Ages 5+", category: "kindergarten",
-    emoji: "📖", color: "#7a9bc4", tag: "Unique", price: "$24.60",
-    etsy: "https://www.etsy.com/listing/1820349389",
-    themes: [],
-    desc: "8 engaging decodable CVC stories where kids fill in missing words and draw pictures — they become the author! Boosts phonics, sight words, and comprehension. Erase and change the stories each time for endless creativity.",
-    features: ["8 decodable CVC stories","Kids fill in words & illustrate","Sight word list included","1 free dry-erase marker"]
-  },
-  {
-    id: 5, name: "Homeschool Binder — Personalized", grade: "All Grades", age: "Ages 3+", category: "bundles",
-    emoji: "📋", color: "#c07090", tag: "Premium", price: "$109.99",
-    etsy: "https://www.etsy.com/listing/4479862015",
-    themes: ["Blooms & Bows"],
-    desc: "Your complete homeschool system in one place. Includes 10 laminated dry-erase learn pages, 100 daily schedules, 30 weekly schedules, 2 yearly planners, reusable routine checklists, goal planners, reading logs, progress trackers, and personalized first/last day posters. Free shipping.",
-    features: ["10 laminated dry-erase pages","100 daily + 30 weekly schedules","Goal planners & progress trackers","Reusable morning & night routine checklists","Free shipping"]
-  },
-  {
-    id: 6, name: "Tracing Little Learning Book", grade: "Pre-K / K", age: "Ages 3+", category: "preschool",
-    emoji: "✍️", color: "#d4a040", tag: "", price: "$22.97",
-    etsy: "https://www.etsy.com/listing/1739999416",
-    themes: ["Blue","Pink","Christmas","Hanukkah"],
-    desc: "Master letters, numbers, and shapes in one beautiful reusable book. 5.5×8.5\" for comfortable tracing on the go or at home. Montessori & homeschool friendly. Comes with 1 free dry-erase marker.",
-    features: ["Letters, numbers & shapes tracing","5.5×8.5\" portable size","Montessori & homeschool friendly","1 free dry-erase marker"]
-  },
-  {
-    id: 7, name: "Kindergarten Learning Book", grade: "Kindergarten", age: "Ages 3+", category: "kindergarten",
-    emoji: "⭐", color: "#9070b0", tag: "Best Seller", price: "$29.70",
-    etsy: "https://www.etsy.com/listing/1732937416",
-    themes: ["Bows","Fairies","Sports","Animals","Groovy 1","Groovy 2","Love","Cottage","Vehicles"],
-    desc: "20 pages covering name tracing, feelings, shapes & patterns, beginning sounds, sight words, decodable words, counting, addition & subtraction, and more. Common Core aligned. 2 free dry-erase markers.",
-    features: ["20 reusable dry-erase pages","Sight words & decodable words","Addition & subtraction intro","2 free dry-erase markers"]
-  },
-  {
-    id: 8, name: "First Grade Learning Book", grade: "1st Grade", age: "Ages 3+", category: "first-grade",
-    emoji: "📚", color: "#6BADA0", tag: "Best Seller", price: "$29.70",
-    etsy: "https://www.etsy.com/listing/1774414850",
-    themes: ["Bows","Fairies","Sports","Animals","Groovy 1","Groovy 2","Love","Cottage","Vehicles"],
-    desc: "21 pages covering feelings, alphabet, reading & writing, sight words, counting, addition & subtraction, telling time, money, and more. Common Core aligned. 2 free dry-erase markers included.",
-    features: ["21 reusable dry-erase pages","Telling time & money","Addition & subtraction","2 free dry-erase markers"]
-  },
-  {
-    id: 9, name: "4-Book Set — Preschool Vehicles", grade: "Preschool", age: "Ages 3+", category: "bundles",
-    emoji: "🚗", color: "#d09050", tag: "Bundle", price: "$99.00",
-    etsy: "https://www.etsy.com/listing/4459619639",
-    themes: ["Vehicles"],
-    desc: "4 personalized books in the vehicles theme: Little Learning Book (19 pages), Little Name Book (7 pages), Little Alphabet Book (13 pages), and Little Numbers Book (13 pages). Everything a preschooler needs. Free shipping. Comes with dry-erase markers.",
-    features: ["4 personalized books","Learning, Name, Alphabet & Numbers","Dry-erase markers included","Free shipping"]
-  },
-  {
-    id: 10, name: "Alphabet Tracing Book", grade: "Pre-K / K", age: "Ages 3+", category: "preschool",
-    emoji: "🔤", color: "#70a0c0", tag: "", price: "$29.80",
-    etsy: "https://www.etsy.com/listing/4345761493",
-    themes: ["Checkers","Floral","Bows","Smiles","Strawberries","Stripes","Vehicles"],
-    desc: "13 wipe-clean pages covering A–Z uppercase & lowercase tracing, letter sound recognition with icons, full alphabet practice, and a creative try-it page. Name on cover + name tracing inside. 1 free dry-erase marker.",
-    features: ["13 reusable dry-erase pages","A–Z uppercase & lowercase","Sound recognition icons","1 free dry-erase marker"]
-  },
-  {
-    id: 11, name: "4-Book Set — Preschool Bows", grade: "Preschool", age: "Ages 3+", category: "bundles",
-    emoji: "🎀", color: "#E8A0A8", tag: "Most Popular", price: "$99.00",
-    etsy: "https://www.etsy.com/listing/4435357059",
-    themes: ["Bows"],
-    desc: "4 personalized books in the best-selling bows theme: Little Learning Book (19 pages), Little Name Book (7 pages), Little Alphabet Book (13 pages), and Little Numbers Book (13 pages). Comes with 4 dry-erase markers. Free shipping.",
-    features: ["4 personalized books","Learning, Name, Alphabet & Numbers","4 dry-erase markers included","Free shipping"]
-  },
-  {
-    id: 12, name: "Second Grade Learning Book", grade: "2nd Grade", age: "Ages 3+", category: "second-grade",
-    emoji: "🎓", color: "#8aaa6a", tag: "", price: "$29.70",
-    etsy: "https://www.etsy.com/listing/1774417124",
-    themes: ["Bows","Fairies","Sports","Animals","Groovy 1","Groovy 2","Love","Cottage","Transportation"],
-    desc: "20 pages covering feelings, reading (vowels, compound words, prefixes/suffixes), addition & subtraction, even/odd numbers, skip counting, word problems, telling time, money, and more. Common Core aligned.",
-    features: ["20 reusable dry-erase pages","Advanced reading skills","Word problems & money","2 free dry-erase markers"]
-  },
-  {
-    id: 13, name: "Birthday Tradition Book", grade: "All Ages", age: "Ages 3+", category: "special",
-    emoji: "🎂", color: "#c07090", tag: "Gift Idea", price: "$28.70",
-    etsy: "https://www.etsy.com/listing/1853611699",
-    themes: ["Blue","Pink"],
-    desc: "Start a birthday tradition! Personalized cover with your child's name and custom birthday date they trace each year. Activities include decorating a cake, making a wish, counting balloons, and matching games. Plus 5 permanent birthday note pages to keep forever.",
-    features: ["Reusable activities + permanent memory pages","Birthday traced each year","Personalized name & date","1 free dry-erase marker"]
-  },
+  { id:1, name:"Preschool Learning Book", grade:"Preschool", age:"Ages 3+", cat:"preschool", emoji:"🌈", color:"#6BADA0", tag:"Best Seller", price:"$29.70", etsy:"https://www.etsy.com/listing/1732934322", themes:["Bows","Fairies","Sports","Animals","Groovy 1","Groovy 2","Love","Cottage","Vehicles","Easter"], desc:"19 pages of hands-on activities covering name tracing, feelings & weather, shapes & patterns, letters, beginning sounds, counting, and more. Common Core aligned.", features:["19 reusable dry-erase pages","Common Core aligned","2 free dry-erase markers","Ships from New York"] },
+  { id:2, name:"Preschool Numbers Book", grade:"Preschool", age:"Ages 3+", cat:"preschool", emoji:"🔢", color:"#E8A0A8", tag:"", price:"$29.70", etsy:"https://www.etsy.com/listing/4450365359", themes:["Bows","Vehicles","Cool","Animals"], desc:"13 wipe-clean pages covering numbers 1–10, matching, fill-in-the-missing-numbers, counting, and more. Name on cover + name tracing inside.", features:["13 reusable dry-erase pages","Numbers 1–10","Name tracing practice","2 free dry-erase markers"] },
+  { id:3, name:"Personalized Name Learning Book", grade:"Pre-K / K", age:"Ages 3+", cat:"preschool", emoji:"✏️", color:"#b0c070", tag:"", price:"$21.99", etsy:"https://www.etsy.com/listing/4429124191", themes:["Bows","Party","Vehicles","Farm"], desc:"7-page workbook focused entirely on learning their name — trace → copy → write independently. Includes first letter ID, letter count, and find-your-name pages.", features:["7 reusable dry-erase pages","Trace → copy → independent writing","First letter & letter count pages","1 free dry-erase marker"] },
+  { id:4, name:"Interactive Beginning Readers", grade:"K / 1st Grade", age:"Ages 5+", cat:"kindergarten", emoji:"📖", color:"#7a9bc4", tag:"Unique", price:"$24.60", etsy:"https://www.etsy.com/listing/1820349389", themes:[], desc:"8 decodable CVC stories where kids fill in missing words and illustrate — they become the author! Boosts phonics, sight words, and comprehension.", features:["8 decodable CVC stories","Kids fill in words & draw","Sight word list included","1 free dry-erase marker"] },
+  { id:5, name:"Homeschool Binder — Personalized", grade:"All Grades", age:"Ages 3+", cat:"bundles", emoji:"📋", color:"#c07090", tag:"Premium", price:"$109.99", etsy:"https://www.etsy.com/listing/4479862015", themes:["Blooms & Bows"], desc:"Your complete homeschool system in one place — 10 laminated learn pages, 100 daily schedules, 30 weekly schedules, 2 yearly planners, routine checklists, goal planners, reading logs, and personalized posters. Free shipping.", features:["10 laminated dry-erase pages","100 daily + 30 weekly schedules","Goal planners & progress trackers","Free shipping"] },
+  { id:6, name:"Tracing Little Learning Book", grade:"Pre-K / K", age:"Ages 3+", cat:"preschool", emoji:"✍️", color:"#d4a040", tag:"", price:"$22.97", etsy:"https://www.etsy.com/listing/1739999416", themes:["Blue","Pink","Christmas","Hanukkah"], desc:"Master letters, numbers, and shapes in one reusable book. 5.5×8.5\" — perfect for on the go. Montessori & homeschool friendly.", features:["Letters, numbers & shapes tracing","5.5×8.5\" portable size","Montessori friendly","1 free dry-erase marker"] },
+  { id:7, name:"Kindergarten Learning Book", grade:"Kindergarten", age:"Ages 5+", cat:"kindergarten", emoji:"⭐", color:"#9070b0", tag:"Best Seller", price:"$29.70", etsy:"https://www.etsy.com/listing/1732937416", themes:["Bows","Fairies","Sports","Animals","Groovy 1","Groovy 2","Love","Cottage","Vehicles"], desc:"20 pages covering name tracing, feelings, sight words, decodable words, counting, addition & subtraction, and more. Common Core aligned.", features:["20 reusable dry-erase pages","Sight words & decodable words","Addition & subtraction","2 free dry-erase markers"] },
+  { id:8, name:"First Grade Learning Book", grade:"1st Grade", age:"Ages 6+", cat:"first-grade", emoji:"📚", color:"#6BADA0", tag:"Best Seller", price:"$29.70", etsy:"https://www.etsy.com/listing/1774414850", themes:["Bows","Fairies","Sports","Animals","Groovy 1","Groovy 2","Love","Cottage","Vehicles"], desc:"21 pages covering feelings, alphabet, reading & writing, sight words, counting, addition & subtraction, telling time, money, and more.", features:["21 reusable dry-erase pages","Telling time & money","Addition & subtraction","2 free dry-erase markers"] },
+  { id:9, name:"4-Book Set — Preschool Vehicles", grade:"Preschool", age:"Ages 3+", cat:"bundles", emoji:"🚗", color:"#d09050", tag:"Bundle", price:"$99.00", etsy:"https://www.etsy.com/listing/4459619639", themes:["Vehicles"], desc:"Learning Book (19 pages) + Name Book (7 pages) + Alphabet Book (13 pages) + Numbers Book (13 pages) — all in the vehicles theme. Free shipping.", features:["4 personalized books","Learning, Name, Alphabet & Numbers","Dry-erase markers included","Free shipping"] },
+  { id:10, name:"Alphabet Tracing Book", grade:"Pre-K / K", age:"Ages 3+", cat:"preschool", emoji:"🔤", color:"#70a0c0", tag:"", price:"$29.80", etsy:"https://www.etsy.com/listing/4345761493", themes:["Checkers","Floral","Bows","Smiles","Strawberries","Stripes","Vehicles"], desc:"13 wipe-clean pages covering A–Z uppercase & lowercase tracing, letter sound recognition, full alphabet practice, and a creative try-it page.", features:["13 reusable dry-erase pages","A–Z uppercase & lowercase","Sound recognition icons","1 free dry-erase marker"] },
+  { id:11, name:"4-Book Set — Preschool Bows", grade:"Preschool", age:"Ages 3+", cat:"bundles", emoji:"🎀", color:"#E8A0A8", tag:"Most Popular", price:"$99.00", etsy:"https://www.etsy.com/listing/4435357059", themes:["Bows"], desc:"Learning Book (19 pages) + Name Book (7 pages) + Alphabet Book (13 pages) + Numbers Book (13 pages) — all in the bestselling bows theme. 4 dry-erase markers included. Free shipping.", features:["4 personalized books","Learning, Name, Alphabet & Numbers","4 dry-erase markers included","Free shipping"] },
+  { id:12, name:"Second Grade Learning Book", grade:"2nd Grade", age:"Ages 7+", cat:"second-grade", emoji:"🎓", color:"#8aaa6a", tag:"", price:"$29.70", etsy:"https://www.etsy.com/listing/1774417124", themes:["Bows","Fairies","Sports","Animals","Groovy 1","Groovy 2","Love","Cottage","Transportation"], desc:"20 pages covering advanced reading (vowels, compound words, prefixes/suffixes), addition & subtraction, word problems, telling time, money, and more.", features:["20 reusable dry-erase pages","Advanced reading skills","Word problems & money","2 free dry-erase markers"] },
+  { id:13, name:"Birthday Tradition Book", grade:"All Ages", age:"Ages 3+", cat:"special", emoji:"🎂", color:"#c07090", tag:"Gift Idea", price:"$28.70", etsy:"https://www.etsy.com/listing/1853611699", themes:["Blue","Pink"], desc:"Start a birthday tradition! Personalized cover, custom birthday date to trace each year, activities like cake decorating, wish-making, and counting balloons. Plus 5 permanent birthday note pages.", features:["Reusable activities + permanent notes","Birthday traced each year","Personalized name & date","1 free dry-erase marker"] },
 ];
 
-let currentProduct = null;
+const filters = [
+  {key:'all',label:'All Products'},
+  {key:'preschool',label:'Preschool'},
+  {key:'kindergarten',label:'Kindergarten'},
+  {key:'first-grade',label:'1st Grade'},
+  {key:'second-grade',label:'2nd Grade'},
+  {key:'bundles',label:'Bundles & Sets'},
+  {key:'special',label:'Special Occasion'},
+];
+
+let current = null;
+
+function buildFilters() {
+  document.getElementById('filterWrap').innerHTML = filters.map(f =>
+    `<button class="filter-btn${f.key==='all'?' active':''}" onclick="filterProducts('${f.key}',this)">${f.label}</button>`
+  ).join('');
+}
 
 function filterProducts(cat, btn) {
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
+  btn.classList.add('active');
   renderProducts(cat);
 }
 
-function renderProducts(filter) {
-  const grid = document.getElementById('shopGrid');
-  const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
-  grid.innerHTML = filtered.map(p => `
-    <div class="product-card-full" onclick="openModal(${p.id})" style="cursor:pointer;">
-      <div class="pcf-img" style="background:${p.color}22;">
-        <div class="pcf-book" style="background:${p.color};">
-          <div class="pcf-book-inner">${p.emoji}<br><span>${p.grade}</span><br><span class="pcf-name">Your Child</span></div>
+function renderProducts(cat) {
+  const list = cat === 'all' ? products : products.filter(p => p.cat === cat);
+  document.getElementById('shopGrid').innerHTML = list.map(p => `
+    <div class="product-card" onclick="openModal(${p.id})">
+      <div class="pc-img" style="background:${p.color}22;">
+        <div class="pc-book" style="background:${p.color};">
+          <div class="pc-book-inner">${p.emoji}<br><span>${p.grade}</span><br><span class="pc-name">Your Child</span></div>
         </div>
       </div>
-      <div class="pcf-body">
-        ${p.tag ? `<div class="pcf-tag">${p.tag}</div>` : '<div style="height:1.6rem"></div>'}
+      <div class="pc-body">
+        ${p.tag ? `<div class="pc-tag teal">${p.tag}</div>` : '<div style="height:1.6rem"></div>'}
         <h3>${p.name}</h3>
-        <p>${p.age} · ${p.desc.substring(0, 65)}…</p>
-        <div class="pcf-price">${p.price}</div>
+        <p>${p.age} · ${p.desc.slice(0,60)}…</p>
+        <div class="pc-price">${p.price}</div>
         <button class="btn-primary sm" onclick="event.stopPropagation();openModal(${p.id})">Customize →</button>
       </div>
     </div>
@@ -343,112 +195,56 @@ function renderProducts(filter) {
 }
 
 function openModal(id) {
-  currentProduct = products.find(p => p.id === id);
-  document.getElementById('modalTitle').textContent = currentProduct.name;
-  document.getElementById('modalTag').textContent = currentProduct.tag || currentProduct.grade;
-  document.getElementById('modalDesc').textContent = currentProduct.desc;
-  document.getElementById('modalEmoji').textContent = currentProduct.emoji;
-  document.getElementById('modalGrade').textContent = currentProduct.grade;
-  document.getElementById('modalPrice').textContent = currentProduct.price;
-  document.getElementById('modalBookVisual').style.background = currentProduct.color;
-  document.getElementById('childName').value = '';
-  document.getElementById('modalNamePreview').textContent = 'Your Child';
-
-  // Populate features
-  const featuresEl = document.getElementById('modalFeatures');
-  featuresEl.innerHTML = currentProduct.features.map(f => `<li>${f}</li>`).join('');
-
-  // Populate themes
+  current = products.find(p => p.id === id);
+  document.getElementById('modalTitle').textContent = current.name;
+  document.getElementById('modalTag').textContent = current.tag || current.grade;
+  document.getElementById('modalDesc').textContent = current.desc;
+  document.getElementById('modalEmoji').textContent = current.emoji;
+  document.getElementById('modalGrade').textContent = current.grade;
+  document.getElementById('modalPrice').textContent = current.price;
+  document.getElementById('modalBook').style.background = current.color;
+  document.getElementById('modalImg').style.background = current.color + '22';
+  document.getElementById('nameInput').value = '';
+  document.getElementById('modalName').textContent = 'Your Child';
+  document.getElementById('modalFeatures').innerHTML = current.features.map(f => `<li>${f}</li>`).join('');
+  const themeField = document.getElementById('themeField');
   const themeSelect = document.getElementById('themeSelect');
-  const themeWrap = document.getElementById('themeWrap');
-  if (currentProduct.themes.length > 0) {
-    themeSelect.innerHTML = currentProduct.themes.map(t => `<option>${t}</option>`).join('');
-    themeWrap.style.display = 'flex';
+  if (current.themes.length > 0) {
+    themeSelect.innerHTML = current.themes.map(t => `<option>${t}</option>`).join('');
+    themeField.style.display = 'flex';
   } else {
-    themeWrap.style.display = 'none';
+    themeField.style.display = 'none';
   }
-
-  // Image gallery
-  const mainImg = document.getElementById('modalMainImg');
-  const bookVisual = document.getElementById('modalBookVisual');
-  const thumbsEl = document.getElementById('modalThumbs');
-  thumbsEl.innerHTML = '';
-
-  if (currentProduct.images && currentProduct.images.length > 0) {
-    mainImg.src = currentProduct.images[0];
-    mainImg.alt = currentProduct.name;
-    mainImg.style.display = 'block';
-    bookVisual.style.display = 'none';
-    for (let i = 0; i < 6; i++) {
-      const dot = document.createElement('button');
-      dot.className = 'modal-thumb' + (i === 0 ? ' active' : '');
-      dot.onclick = () => {
-        mainImg.src = currentProduct.images[i];
-        thumbsEl.querySelectorAll('.modal-thumb').forEach(d => d.classList.remove('active'));
-        dot.classList.add('active');
-      };
-      thumbsEl.appendChild(dot);
-    }
-  } else {
-    mainImg.style.display = 'none';
-    bookVisual.style.display = 'flex';
-    thumbsEl.innerHTML = '';
-  }
-
-  // Theme → image mapping
-  if (currentProduct.themeImageMap) {
-    themeSelect.onchange = () => {
-      const idx = currentProduct.themeImageMap[themeSelect.value];
-      if (idx && currentProduct.images) {
-        mainImg.src = currentProduct.images[idx - 1];
-        thumbsEl.querySelectorAll('.modal-thumb').forEach(d => d.classList.remove('active'));
-      }
-    };
-  } else {
-    themeSelect.onchange = null;
-  }
-
-  // Show/hide name field
-  const nameWrap = document.getElementById('nameWrap');
-  nameWrap.style.display = currentProduct.category === 'special' || true ? 'flex' : 'none';
-
-  // Set Etsy link
-  document.getElementById('etsyBtn').href = currentProduct.etsy;
-  document.getElementById('etsyBtn').textContent = `Order on Etsy — ${currentProduct.price} →`;
-
-  document.getElementById('productModal').classList.add('open');
+  document.getElementById('etsyBtn').href = current.etsy;
+  document.getElementById('etsyBtn').textContent = `Order on Etsy — ${current.price} →`;
+  document.getElementById('modal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
-  document.getElementById('productModal').classList.remove('open');
+  document.getElementById('modal').classList.remove('open');
   document.body.style.overflow = '';
 }
 
-function updatePreview() {
-  const name = document.getElementById('childName').value;
-  document.getElementById('modalNamePreview').textContent = name || 'Your Child';
+function updateName() {
+  const n = document.getElementById('nameInput').value;
+  document.getElementById('modalName').textContent = n || 'Your Child';
 }
 
-function addToCart() {
-  closeModal();
-  const toast = document.getElementById('cartToast');
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2800);
-}
+document.getElementById('modal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
 
-document.getElementById('productModal').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
-});
+function handleSub(e) { e.preventDefault(); e.target.querySelector('button').textContent = '🎉 Check your inbox!'; }
 
-window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
-});
+window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20));
 document.getElementById('hamburger').addEventListener('click', () => {
   document.getElementById('mobileMenu').classList.toggle('open');
   document.getElementById('hamburger').classList.toggle('open');
 });
 
+const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+buildFilters();
 renderProducts('all');
 </script>
 </body>
