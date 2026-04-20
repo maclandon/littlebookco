@@ -351,7 +351,12 @@ body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(-
 .viral-section { background: #1a1a2e; padding: 5rem 2.5rem; position: relative; overflow: hidden; }
 .viral-section::before {
   content: ""; position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 60% 50%, rgba(107,173,160,0.15) 0%, transparent 70%);
+  background: url('Images/lifestyle-unboxing.jpg') center/cover no-repeat;
+  opacity: 0.25;
+}
+.viral-section::after {
+  content: ""; position: absolute; inset: 0;
+  background: rgba(26,26,46,0.7);
 }
 .viral-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; position: relative; z-index: 1; }
 .viral-text .section-eyebrow { background: rgba(107,173,160,0.2); color: var(--teal-light); }
@@ -363,10 +368,10 @@ body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(-
 .viral-stat-num { font-family: 'Fredoka One', cursive; font-size: 2rem; color: var(--gold); display: block; }
 .viral-stat-label { font-size: .78rem; color: rgba(255,255,255,0.6); font-weight: 600; }
 .phone-mockup {
-  background: #111; border-radius: 36px;
-  border: 6px solid #333;
-  padding: 1.5rem 1rem;
-  max-width: 240px; margin: 0 auto;
+  background: #111; border-radius: 28px;
+  border: 5px solid #333;
+  padding: 1rem .75rem;
+  max-width: 180px; margin: 0 auto;
   box-shadow: 0 30px 60px rgba(0,0,0,0.5);
 }
 .phone-screen {
@@ -525,18 +530,7 @@ body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(-
       </div>
     </div>
     <div class="hero-visual">
-      <div class="hero-product-card">
-        <div class="product-card-img" style="padding:0;min-height:auto;">
-          <img src="little-book-co-product-hero.png" alt="Personalized Learning Book" style="width:100%;height:auto;display:block;border-radius:24px 24px 0 0;">
-        </div>
-        <div class="product-card-info">
-          <div class="product-card-name">Personalized Learning Book</div>
-          <div class="product-card-price">$29.70</div>
-          <a href="shop.html" class="product-card-btn">Customize Yours →</a>
-        </div>
-      </div>
-      <div class="hero-floating-badge badge-top">798K TikTok Views 🎉</div>
-      <div class="hero-floating-badge badge-bottom">As seen on TikTok ✨</div>
+      <img src="Images/lifestyle-tracing.jpg" alt="Child tracing letters in personalized book" style="border-radius:24px;box-shadow:0 16px 48px rgba(107,173,160,0.2);max-width:480px;width:100%;object-fit:cover;">
     </div>
   </div>
 </section>
@@ -719,35 +713,8 @@ body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(-
       <p>Every book is printed fresh with your child's name woven throughout — making learning feel personal, special, and theirs.</p>
       <a href="shop.html" class="btn-primary yellow lg">Find Their Book →</a>
     </div>
-    <div class="why-list">
-      <div class="why-item reveal">
-        <div class="why-icon-wrap">🔁</div>
-        <div>
-          <strong>Reusable forever</strong>
-          <p>Dry-erase pages mean hundreds of uses — never buy another workbook.</p>
-        </div>
-      </div>
-      <div class="why-item reveal">
-        <div class="why-icon-wrap">💛</div>
-        <div>
-          <strong>Truly personalized</strong>
-          <p>Their name on every page. Crayola can't do that. We can.</p>
-        </div>
-      </div>
-      <div class="why-item reveal">
-        <div class="why-icon-wrap">🎓</div>
-        <div>
-          <strong>Curriculum-aligned</strong>
-          <p>Every activity designed to Common Core early childhood standards.</p>
-        </div>
-      </div>
-      <div class="why-item reveal">
-        <div class="why-icon-wrap">🎁</div>
-        <div>
-          <strong>Perfect gift, every time</strong>
-          <p>Birthdays, back to school, or just because — it always lands.</p>
-        </div>
-      </div>
+    <div>
+      <img src="Images/lifestyle-mom-child.jpg" alt="Mom and child using personalized learning book" style="border-radius:24px;object-fit:cover;height:480px;width:100%;display:block;">
     </div>
   </div>
 </section>
