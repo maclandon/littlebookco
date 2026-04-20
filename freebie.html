@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Homeschool Schedule Template — Little Book Co.</title>
+<meta name="description" content="Download our free Canva homeschool schedule template. Customize it with your child's name, routine, and favorite colors.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Playfair+Display:ital,wght@0,700;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.freebie-page { min-height: 100vh; }
+.freebie-split {
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 100vh; padding-top: 72px;
+}
+.freebie-left {
+  background: var(--teal); padding: 5rem 4rem;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.freebie-left::before {
+  content: ""; position: absolute;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  top: -200px; right: -200px;
+}
+.freebie-left-content { position: relative; z-index: 1; }
+.freebie-preview-card {
+  background: white; border-radius: 20px;
+  padding: 2rem; max-width: 380px; margin-top: 2rem;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+.schedule-header {
+  background: var(--teal-pale); border-radius: 12px;
+  padding: 1rem; text-align: center; margin-bottom: 1rem;
+}
+.schedule-header h4 { font-family: 'Playfair Display', serif; font-style: italic; color: var(--teal-dark); font-size: 1rem; }
+.schedule-row {
+  display: flex; align-items: center; gap: .75rem;
+  padding: .6rem .75rem; border-radius: 10px;
+  margin-bottom: .4rem; background: var(--cream);
+}
+.schedule-time { font-size: .75rem; font-weight: 800; color: var(--teal-dark); min-width: 50px; }
+.schedule-activity { font-size: .82rem; font-weight: 600; color: var(--text); }
+.schedule-emoji { font-size: .9rem; }
+.freebie-right {
+  background: var(--cream); padding: 5rem 4rem;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.freebie-right h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700;
+  line-height: 1.15; margin-bottom: 1rem;
+}
+.freebie-right h1 em { font-style: italic; color: var(--teal-dark); }
+.freebie-right p { color: var(--text-light); line-height: 1.7; margin-bottom: 1.5rem; }
+.freebie-bullets { list-style: none; margin-bottom: 2rem; display: flex; flex-direction: column; gap: .6rem; }
+.freebie-bullets li { display: flex; align-items: center; gap: .75rem; font-size: .92rem; font-weight: 600; }
+.freebie-bullets li::before { content: "✓"; color: var(--teal-dark); font-weight: 900; }
+.freebie-form { display: flex; flex-direction: column; gap: .75rem; max-width: 420px; }
+.freebie-success { display: none; text-align: center; padding: 2rem; }
+.freebie-success.show { display: block; }
+.freebie-form.hide { display: none; }
+.success-icon { font-size: 4rem; display: block; margin-bottom: 1rem; }
+.success-h { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: .5rem; }
+@media (max-width: 860px) {
+  .freebie-split { grid-template-columns: 1fr; }
+  .freebie-left { padding: 3rem 2rem; }
+  .freebie-right { padding: 3rem 2rem; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav" style="background:rgba(253,248,240,0.95);">
+  <a href="index.html" class="nav-logo"><div class="nav-logo-icon">📖</div><span>Little Book Co.</span></a>
+  <ul class="nav-links">
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="freebie.html" style="color:var(--teal)">Free Download</a></li>
+  </ul>
+  <a href="shop.html" class="nav-cta">Shop Now ✨</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="shop.html">Shop</a><a href="about.html">About</a><a href="blog.html">Blog</a><a href="freebie.html">Free Download</a>
+  <a href="shop.html" class="mobile-cta">Shop Now ✨</a>
+</div>
+
+<div class="freebie-split">
+  <!-- LEFT: Preview -->
+  <div class="freebie-left">
+    <div class="freebie-left-content">
+      <div style="background:rgba(255,255,255,0.2);color:white;display:inline-block;padding:.4rem 1rem;border-radius:50px;font-size:.78rem;font-weight:700;margin-bottom:1.5rem;letter-spacing:.04em;">🎁 100% Free — No Credit Card</div>
+      <h2 style="font-family:'Playfair Display',serif;color:white;font-size:clamp(1.5rem,2.5vw,2.2rem);line-height:1.2;margin-bottom:1rem;">A daily schedule<br><em style="color:var(--teal-light)">they'll actually follow.</em></h2>
+      <p style="color:rgba(255,255,255,0.8);font-size:.9rem;line-height:1.65;max-width:380px;">Preview of what you'll get — fully editable in Canva. Change the name, times, colors, and activities in minutes.</p>
+
+      <div class="freebie-preview-card">
+        <div class="schedule-header">
+          <div style="font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-light);margin-bottom:.25rem">HOMESCHOOL SCHEDULE</div>
+          <h4>Emma's Day ✨</h4>
+        </div>
+        <div class="schedule-row"><span class="schedule-time">8:00 AM</span><span class="schedule-emoji">🌅</span><span class="schedule-activity">Morning Circle & Calendar</span></div>
+        <div class="schedule-row"><span class="schedule-time">8:30 AM</span><span class="schedule-emoji">📖</span><span class="schedule-activity">Reading Time</span></div>
+        <div class="schedule-row"><span class="schedule-time">9:15 AM</span><span class="schedule-emoji">🔢</span><span class="schedule-activity">Math Practice</span></div>
+        <div class="schedule-row"><span class="schedule-time">10:00 AM</span><span class="schedule-emoji">🎨</span><span class="schedule-activity">Art & Creativity</span></div>
+        <div class="schedule-row"><span class="schedule-time">10:30 AM</span><span class="schedule-emoji">🌿</span><span class="schedule-activity">Outdoor Play</span></div>
+        <div class="schedule-row" style="opacity:.5"><span class="schedule-time">...</span><span class="schedule-emoji">✏️</span><span class="schedule-activity">+ 6 more time slots</span></div>
+        <div style="text-align:center;font-size:.75rem;color:var(--text-lighter);margin-top:.75rem;font-weight:600;">Editable in Canva · Free to download</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Form -->
+  <div class="freebie-right">
+    <div class="section-tag" style="margin-bottom:1rem;">Free Printable</div>
+    <h1>Your free<br><em>Homeschool Schedule Template</em></h1>
+    <p>Join 500+ families who use this template to bring calm and structure to their homeschool day. Customize every detail in Canva — no design skills needed.</p>
+
+    <ul class="freebie-bullets">
+      <li>Fully editable in free Canva account</li>
+      <li>Personalize with your child's name & photo</li>
+      <li>12 time slots, custom activities, color themes</li>
+      <li>Printable + digital-friendly format</li>
+      <li>Bonus: weekly lesson planner included</li>
+    </ul>
+
+    <form class="freebie-form" id="freebieForm" onsubmit="submitFreebie(event)">
+      <div class="form-field" style="display:flex;flex-direction:column;gap:.3rem;">
+        <label style="font-size:.8rem;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:.04em;">Your Name</label>
+        <input type="text" class="email-input" placeholder="e.g. Sarah" required style="border-radius:12px;max-width:420px;">
+      </div>
+      <div class="form-field" style="display:flex;flex-direction:column;gap:.3rem;">
+        <label style="font-size:.8rem;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:.04em;">Email Address</label>
+        <input type="email" class="email-input" placeholder="sarah@example.com" required style="border-radius:12px;max-width:420px;">
+      </div>
+      <div class="form-field" style="display:flex;flex-direction:column;gap:.3rem;">
+        <label style="font-size:.8rem;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:.04em;">Child's Age (optional)</label>
+        <select class="email-input" style="border-radius:12px;max-width:420px;font-family:'Nunito',sans-serif;">
+          <option value="">Select age range…</option>
+          <option>3–4 years (Preschool)</option>
+          <option>5–6 years (Kindergarten)</option>
+          <option>6–7 years (1st Grade)</option>
+          <option>7–8 years (2nd Grade)</option>
+        </select>
+      </div>
+      <button type="submit" class="btn-primary lg" style="max-width:420px;">Send Me the Free Template →</button>
+      <p style="font-size:.78rem;color:var(--text-lighter);">No spam, ever. Unsubscribe any time. You'll also get occasional tips and early access to new products.</p>
+    </form>
+
+    <div class="freebie-success" id="freebieSuccess">
+      <span class="success-icon">🎉</span>
+      <div class="success-h">Check your inbox!</div>
+      <p style="color:var(--text-light);">The template link is on its way. While you wait — grab a personalized learning book for your little one!</p>
+      <a href="shop.html" class="btn-primary lg" style="margin-top:1rem;display:inline-block;">Shop the Collection →</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">📖 Little Book Co.</div>
+      <p>Personalized learning books made with love.</p>
+    </div>
+    <div class="footer-links-col">
+      <div class="footer-col"><h4>Shop</h4><a href="shop.html">All Products</a></div>
+      <div class="footer-col"><h4>Learn</h4><a href="about.html">About Elle</a><a href="blog.html">Blog</a></div>
+      <div class="footer-col"><h4>Help</h4><a href="#">Contact</a><a href="#">FAQ</a></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Little Book Co.</p>
+    <p>Made with 💛 for little learners everywhere.</p>
+  </div>
+</footer>
+
+<script>
+function submitFreebie(e) {
+  e.preventDefault();
+  document.getElementById('freebieForm').classList.add('hide');
+  document.getElementById('freebieSuccess').classList.add('show');
+}
+window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20); });
+document.getElementById('hamburger').addEventListener('click', () => { document.getElementById('mobileMenu').classList.toggle('open'); document.getElementById('hamburger').classList.toggle('open'); });
+</script>
+</body>
+</html>

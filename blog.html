@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Little Book Co.</title>
+<meta name="description" content="Tips, ideas, and resources for parents and homeschool educators. From activity ideas to curriculum guides.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Playfair+Display:ital,wght@0,700;1,600;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo"><div class="nav-logo-icon">📖</div><span>Little Book Co.</span></a>
+  <ul class="nav-links">
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html" style="color:var(--teal)">Blog</a></li>
+    <li><a href="freebie.html">Free Download</a></li>
+  </ul>
+  <a href="shop.html" class="nav-cta">Shop Now ✨</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="shop.html">Shop</a><a href="about.html">About</a><a href="blog.html">Blog</a><a href="freebie.html">Free Download</a>
+  <a href="shop.html" class="mobile-cta">Shop Now ✨</a>
+</div>
+
+<section class="page-hero">
+  <div class="section-tag">The Little Book Blog</div>
+  <h1>Ideas & resources for <em>curious families.</em></h1>
+  <p>Activity ideas, homeschool tips, and behind-the-scenes from Elle — published every week.</p>
+</section>
+
+<!-- FEATURED POST -->
+<section class="section" style="padding-top:2rem;background:white;">
+  <div class="inner">
+    <div style="background:var(--teal-pale);border-radius:24px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;margin-bottom:3rem;" id="featuredPost">
+      <div style="background:var(--teal);display:flex;align-items:center;justify-content:center;min-height:320px;font-size:6rem;">📖</div>
+      <div style="padding:3rem;">
+        <div class="blog-card-tag">Featured · Reading</div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;margin-bottom:.75rem;line-height:1.25;">5 Signs Your Preschooler is Ready to Start Reading (and What to Do Next)</h2>
+        <p style="color:var(--text-light);font-size:.9rem;line-height:1.7;margin-bottom:1.5rem;">Most kids show readiness cues months before parents notice. Here's what to look for and how to gently nudge the process forward without pressure.</p>
+        <div style="display:flex;align-items:center;gap:1rem;">
+          <a href="#" class="btn-primary sm">Read Article →</a>
+          <span style="font-size:.78rem;color:var(--text-lighter);font-weight:600;">5 min read · April 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORIES -->
+    <div class="shop-filters">
+      <button class="filter-btn active" onclick="filterPosts('all', this)">All Posts</button>
+      <button class="filter-btn" onclick="filterPosts('reading', this)">Reading</button>
+      <button class="filter-btn" onclick="filterPosts('homeschool', this)">Homeschool</button>
+      <button class="filter-btn" onclick="filterPosts('activities', this)">Activities</button>
+      <button class="filter-btn" onclick="filterPosts('tips', this)">Parent Tips</button>
+    </div>
+
+    <div class="blog-grid" id="blogGrid"></div>
+  </div>
+</section>
+
+<!-- EMAIL CAPTURE -->
+<section class="section email-capture">
+  <div class="inner">
+    <div class="email-card">
+      <div class="email-card-deco">💌</div>
+      <h2>Get new posts in your inbox</h2>
+      <p>Weekly tips, activity ideas, and early access to new products — for parents who love learning as much as their kids do.</p>
+      <form class="email-form" onsubmit="handleSub(event)">
+        <input type="email" class="email-input" placeholder="Your email address" required>
+        <button type="submit" class="btn-primary">Subscribe — It's Free →</button>
+      </form>
+      <div class="email-fine">Join 500+ families. No spam, ever.</div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">📖 Little Book Co.</div>
+      <p>Personalized learning books made with love, for little ones who deserve to feel special.</p>
+    </div>
+    <div class="footer-links-col">
+      <div class="footer-col"><h4>Shop</h4><a href="shop.html">All Products</a><a href="shop.html">Preschool</a></div>
+      <div class="footer-col"><h4>Learn</h4><a href="about.html">About Elle</a><a href="blog.html">Blog</a><a href="freebie.html">Free Template</a></div>
+      <div class="footer-col"><h4>Help</h4><a href="#">FAQ</a><a href="#">Contact</a></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Little Book Co. All rights reserved.</p>
+    <p>Made with 💛 for little learners everywhere.</p>
+  </div>
+</footer>
+
+<script>
+const posts = [
+  { title: "How to Create a Homeschool Morning Routine That Actually Works", tag: "Homeschool", emoji: "🌅", category: "homeschool", date: "Apr 14", read: "4 min read", desc: "Mornings can make or break your homeschool day. Here's the simple framework we use at home." },
+  { title: "10 Dry-Erase Activity Ideas for Preschoolers on Rainy Days", tag: "Activities", emoji: "🎨", category: "activities", date: "Apr 7", read: "3 min read", desc: "Turn a boring day inside into a learning adventure. These activities need zero prep and keep kids busy for hours." },
+  { title: "Should I Teach My 3-Year-Old to Read?", tag: "Reading", emoji: "📚", category: "reading", date: "Mar 28", read: "5 min read", desc: "The question every parent asks. The honest, research-backed answer might surprise you." },
+  { title: "What 'Play-Based Learning' Actually Means (And Why It Works)", tag: "Tips", emoji: "🧩", category: "tips", date: "Mar 21", read: "4 min read", desc: "Everyone says it. Not everyone can explain it. Here's the practical version — with real examples." },
+  { title: "How We Chose the Activities for the Kindergarten Learning Book", tag: "Homeschool", emoji: "⭐", category: "homeschool", date: "Mar 14", read: "3 min read", desc: "Behind the scenes: how I research, test, and finalize the activities that go into every book we make." },
+  { title: "5 Ways to Make Math Less Scary for Little Ones", tag: "Activities", emoji: "🔢", category: "activities", date: "Mar 7", read: "5 min read", desc: "Math anxiety starts young. These playful techniques help kids build number confidence before they hit a classroom." },
+  { title: "The Best Free Printables for Preschoolers in 2026", tag: "Tips", emoji: "🖨️", category: "tips", date: "Feb 28", read: "6 min read", desc: "A curated list of the best free resources I've found — plus the ones I made myself that you can grab for free." },
+  { title: "When to Worry About Your Child's Reading Progress", tag: "Reading", emoji: "💛", category: "reading", date: "Feb 20", read: "5 min read", desc: "Signs that a child is on track, and when it's worth talking to a specialist. A compassionate guide for worried parents." },
+  { title: "Our Favorite Screen-Free Morning Activities for Kids Under 6", tag: "Activities", emoji: "☀️", category: "activities", date: "Feb 12", read: "3 min read", desc: "The list we keep coming back to when mornings go sideways and screens feel too easy." },
+];
+
+function renderPosts(filter) {
+  const grid = document.getElementById('blogGrid');
+  const filtered = filter === 'all' ? posts : posts.filter(p => p.category === filter);
+  grid.innerHTML = filtered.map(p => `
+    <div class="blog-card reveal">
+      <div class="blog-card-img" style="font-size:3.5rem;">${p.emoji}</div>
+      <div class="blog-card-body">
+        <div class="blog-card-tag">${p.tag}</div>
+        <h3>${p.title}</h3>
+        <p>${p.desc}</p>
+        <div class="blog-card-meta">${p.date} · ${p.read}</div>
+        <a href="#" style="display:inline-block;margin-top:.75rem;font-size:.82rem;font-weight:700;color:var(--teal-dark);text-decoration:none;">Read →</a>
+      </div>
+    </div>
+  `).join('');
+  const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
+  grid.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+function filterPosts(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderPosts(cat);
+}
+
+function handleSub(e) { e.preventDefault(); e.target.querySelector('button').textContent = '🎉 You\'re in!'; }
+
+window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20); });
+document.getElementById('hamburger').addEventListener('click', () => { document.getElementById('mobileMenu').classList.toggle('open'); document.getElementById('hamburger').classList.toggle('open'); });
+
+renderPosts('all');
+</script>
+</body>
+</html>
