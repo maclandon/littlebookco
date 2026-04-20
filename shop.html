@@ -106,6 +106,8 @@
   <div class="modal-card">
     <button class="modal-close" onclick="closeModal()">✕</button>
     <div class="modal-img" id="modalImg">
+      <img class="modal-main-img" id="modalMainImg" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;border-radius:16px 0 0 16px;">
+      <div class="modal-thumbs" id="modalThumbs" style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:6px;"></div>
       <div class="modal-book" id="modalBook">
         <div class="modal-book-emoji" id="modalEmoji">🌈</div>
         <div class="modal-book-grade" id="modalGrade">Preschool</div>
@@ -198,13 +200,30 @@ function openModal(id) {
   document.getElementById('modalTag').textContent = current.tag || current.grade;
   document.getElementById('modalDesc').textContent = current.desc;
   document.getElementById('modalPrice').textContent = current.price;
-  const modalImgEl = document.getElementById('modalImg');
+  const modalMainImg = document.getElementById('modalMainImg');
   const modalBookEl = document.getElementById('modalBook');
-  if (current.images) {
+  const modalThumbs = document.getElementById('modalThumbs');
+  const modalImgEl = document.getElementById('modalImg');
+  modalThumbs.innerHTML = '';
+  if (current.images && current.images.length > 0) {
+    modalMainImg.src = current.images[0];
+    modalMainImg.alt = current.name;
+    modalMainImg.style.display = 'block';
     modalBookEl.style.display = 'none';
-    modalImgEl.style.background = '#fff';
-    modalImgEl.innerHTML = `<img src="${current.images[0]}" alt="${current.name}" style="width:100%;height:100%;object-fit:cover;border-radius:16px 0 0 16px;">` + modalBookEl.outerHTML;
+    modalImgEl.style.background = '#f5f5f5';
+    current.images.forEach((img, i) => {
+      const dot = document.createElement('button');
+      dot.style.cssText = 'width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;padding:0;transition:all .2s;' + (i === 0 ? 'background:var(--teal);transform:scale(1.3);' : 'background:rgba(0,0,0,0.2);');
+      dot.onclick = () => {
+        modalMainImg.src = img;
+        modalThumbs.querySelectorAll('button').forEach(d => { d.style.background = 'rgba(0,0,0,0.2)'; d.style.transform = 'scale(1)'; });
+        dot.style.background = 'var(--teal)';
+        dot.style.transform = 'scale(1.3)';
+      };
+      modalThumbs.appendChild(dot);
+    });
   } else {
+    modalMainImg.style.display = 'none';
     modalBookEl.style.display = 'flex';
     document.getElementById('modalEmoji').textContent = current.emoji;
     document.getElementById('modalGrade').textContent = current.grade;
