@@ -106,7 +106,7 @@
   <div class="modal-card">
     <button class="modal-close" onclick="closeModal()">✕</button>
     <div class="modal-img" id="modalImg" style="position:relative;">
-      <img class="modal-main-img" id="modalMainImg" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;border-radius:16px 0 0 16px;">
+      <img class="modal-main-img" id="modalMainImg" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;">
       <button class="img-nav img-nav-left" id="imgPrev" onclick="navImg(-1)" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:none;background:rgba(255,255,255,.85);cursor:pointer;font-size:1.1rem;display:none;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:transform .15s;">‹</button>
       <button class="img-nav img-nav-right" id="imgNext" onclick="navImg(1)" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:none;background:rgba(255,255,255,.85);cursor:pointer;font-size:1.1rem;display:none;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:transform .15s;">›</button>
       <div class="modal-counter" id="modalCounter" style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.5);color:#fff;font-size:.75rem;font-weight:700;padding:4px 10px;border-radius:50px;display:none;"></div>
@@ -183,7 +183,7 @@ function renderProducts(cat) {
   document.getElementById('shopGrid').innerHTML = list.map(p => `
     <div class="product-card" onclick="openModal(${p.id})">
       <div class="pc-img" style="background:${p.color}22;">
-        ${p.images ? `<img src="${p.images[0]}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;border-radius:16px 16px 0 0;">` : `<div class="pc-book" style="background:${p.color};"><div class="pc-book-inner">${p.emoji}<br><span>${p.grade}</span><br><span class="pc-name">Your Child</span></div></div>`}
+        ${p.images ? `<img src="${p.images[0]}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;">` : `<div class="pc-book" style="background:${p.color};"><div class="pc-book-inner">${p.emoji}<br><span>${p.grade}</span><br><span class="pc-name">Your Child</span></div></div>`}
       </div>
       <div class="pc-body">
         ${p.tag ? `<div class="pc-tag teal">${p.tag}</div>` : '<div style="height:1.6rem"></div>'}
