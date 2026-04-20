@@ -315,6 +315,12 @@ const products = [
 
 let currentProduct = null;
 
+function filterProducts(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  renderProducts(cat);
+}
+
 function renderProducts(filter) {
   const grid = document.getElementById('shopGrid');
   const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
