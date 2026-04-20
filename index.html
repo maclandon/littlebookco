@@ -202,8 +202,10 @@ body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(-
 .badge-bottom { bottom: 60px; left: -40px; }
 
 /* ===== WAVE DIVIDER ===== */
-.wave-divider { display: block; width: 100%; overflow: hidden; line-height: 0; }
-.wave-divider svg { display: block; width: 100%; }
+.wave-divider { display: block; width: 100%; overflow: hidden; line-height: 0; margin: 0; padding: 0; }
+.wave-divider svg { display: block; width: 100%; height: auto; }
+.wave-divider + section, .wave-divider + .wave-divider, section + .wave-divider { margin-top: 0; }
+section { margin: 0; }
 
 /* ===== TICKER ===== */
 .ticker-wrap { background: var(--teal-dark); overflow: hidden; padding: .8rem 0; white-space: nowrap; }
