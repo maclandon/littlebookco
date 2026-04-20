@@ -456,7 +456,10 @@ section { margin: 0; }
   #reviewsGrid { grid-template-columns: repeat(2, 1fr) !important; }
 }
 @media (max-width: 600px) {
+  .hero-visual { display: none; }
+  .hero-inner { gap: 1.5rem; }
   .age-tiles { grid-template-columns: repeat(2, 1fr); }
+  .age-tile { padding: 1.5rem 1rem; }
   .age-tile-emoji { font-size: 2.8rem; }
   .age-tile-label { font-size: .85rem; }
   .products-grid { grid-template-columns: 1fr; }
@@ -465,6 +468,8 @@ section { margin: 0; }
   .nav { padding: 1rem 1.25rem; }
   .viral-stats { grid-template-columns: 1fr 1fr; }
   #reviewsGrid { grid-template-columns: 1fr !important; }
+  .ticker { animation-duration: 20s; }
+  .marquee-row.scroll-left, .marquee-row.scroll-right { animation-duration: 50s; }
 }
 </style>
 </head>
